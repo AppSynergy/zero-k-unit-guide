@@ -15,3 +15,7 @@ body .zk-unit .title {
 body .progress {
   margin-bottom: 4px;
 }
+/* line 13, ../../sass/src/unitguide.sass */
+body .progress-bar {
+  background-color: #446655;
+}

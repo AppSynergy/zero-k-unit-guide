@@ -15,7 +15,7 @@ app.controller('MainCtrl', function($scope, $resource) {
 	
 	// choose a new factory
 	$scope.selectFactory = function() {
-		console.log($scope.selectedFactory);
+		//console.log($scope.selectedFactory);
 	}
 	
 	// used for filtering units list
@@ -35,5 +35,18 @@ app.controller('MainCtrl', function($scope, $resource) {
 		dps:    'DPS',
 		range:  'Range',
 	};
+	
+	// figure out a good width for the "strength indicator"
+	$scope.myWidth = function(val, otherVals) {
+		var perc = (val/40)+"%";
+		console.log(val);
+		console.log(otherVals);
+		return perc;
+	}
+	
+	// fetch the stats of my factory-fellows
+	$scope.currentStats = function(key) {
+		return 1;
+	}
   
 });
