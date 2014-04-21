@@ -1,0 +1,9 @@
+# !ignore me!
+
+# Dev stuff
+.komodotools
+*.komodoproject
+*~
+
+# Actual ZK project
+zk/

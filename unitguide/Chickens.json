@@ -1,0 +1,108 @@
+{
+     "data": [ {
+                  "builder": false,
+                     "cost": 0,
+                     "desc": "Morphs Into Chicken Structures",
+                   "handle": "chicken_drone_starter",
+                 "longdesc": "A hapless non-combat organism whose sole purpose in life is to morph into one of the Chicken Hive's structures.",
+                     "name": "Drone",
+                    "sight": 256,
+                    "slope": 36,
+                    "speed": 1.8
+             }, {
+                  "builder": false,
+                     "cost": 0,
+                     "desc": "Morphs Into Chicken Structures",
+                   "handle": "chicken_drone",
+                 "longdesc": "A hapless non-combat organism whose sole purpose in life is to morph into one of the Chicken Hive's structures.",
+                     "name": "Drone",
+                    "sight": 256,
+                    "slope": 36,
+                    "speed": 1.8
+             }, {
+                  "builder": false,
+                     "cost": 0,
+                   "damage": 10,
+                     "desc": "Chicken Shield (Static)",
+                      "gun": "shield",
+                   "handle": "chicken_rafflesia",
+                 "longdesc": "The Rafflesia protects nearby chicken units and structures with its shield.",
+                     "name": "Rafflesia",
+                    "sight": 512,
+                    "slope": 36,
+                    "speed": 0
+             }, {
+                  "builder": false,
+                     "cost": 0,
+                     "desc": "Chicken Bomb",
+                   "handle": "chicken_dodo",
+                 "longdesc": "The Dodo's body contains a volatile mixture of organic explosives. At the slightest provocation, it explodes spectacularly, with the resulting shockwave throwing nearby units into the air. Beware as its flying limbs and spikes will do residual damage.",
+                     "name": "Dodo",
+                    "sight": 256,
+                    "slope": 36,
+                    "speed": 7
+             }, {
+                  "builder": false,
+                     "cost": 340,
+                   "damage": 80,
+                     "desc": "Spawns Chicken",
+                      "gun": "aerospores",
+                   "handle": "roost",
+                 "longdesc": "Roosts such as this one are the hatching grounds of the Thunderbirds.",
+                     "name": "Roost",
+                    "range": 600,
+                   "reload": 3,
+                    "sight": 273,
+                    "slope": 36,
+                    "speed": 0
+             }, {
+                  "builder": false,
+                     "cost": 0,
+                   "damage": 300,
+                     "desc": "Über Assault Chicken",
+                      "gun": "melee",
+                   "handle": "chicken_dragon",
+                 "longdesc": "The White Dragons, senior guardians of the chicken hive, are monstrous beings second only to the queen herself. With a powerful stomp, lethal jaws, corrosive goo and a multitude of spores, they are a threat to be feared indeed.",
+                     "name": "White Dragon",
+                    "range": 160,
+                   "reload": 0.6,
+                    "sight": 1200,
+                    "slope": 36,
+                    "speed": 2.1
+             }, {
+                  "builder": true,
+                     "cost": 0,
+                     "desc": "Spawns Chickens",
+                   "handle": "nest",
+                 "longdesc": "Nests such as this one are where the basic Thunderbirds are hatched.",
+                     "name": "Nest",
+                    "sight": 273,
+                    "slope": 15,
+                    "speed": 0
+             }, {
+                  "builder": true,
+                     "cost": 0,
+                     "desc": "Spawns Big Chickens",
+                   "handle": "roostfac",
+                 "longdesc": "Roosts such as this one are where the more powerful Thunderbirds are hatched.",
+                     "name": "Roost",
+                    "sight": 273,
+                    "slope": 15,
+                    "speed": 0
+             }, {
+                  "builder": true,
+                     "cost": 0,
+                   "damage": 40,
+                     "desc": "Tends the Nest",
+                      "gun": "melee",
+                   "handle": "chickenbroodqueen",
+                 "longdesc": "The egg-laying brood queen is not quite as fearsome in combat as the other queen, but can in the long run present an even bigger threat. It produces all the different chicken breeds of the Thunderbirds.",
+                     "name": "Chicken Brood Queen",
+                    "range": 120,
+                   "reload": 0.4,
+                    "sight": 1024,
+                    "slope": 72,
+                    "speed": 2
+             } ],
+    "title": "Chickens"
+}
