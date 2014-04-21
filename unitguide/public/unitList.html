@@ -3,15 +3,19 @@
 	<div class="row">
 		
 		<div class="col-xs-4">
-			<div ng-repeat="(key, title) in unitStats">
-				<span ng-if="strlen(u.key) > 0">
-				{{ title }}: <span class="badge">{{ u[key] }}</span>
-				</span>
+			<div ng-repeat="(key, title) in unitStats">	
+				<div class="progress">
+					<span class="title">{{ title }}</span>
+					<span class="badge">{{ u[key] }}</span>
+					<div class="progress-bar" role="progressbar"
+						style="width: 45%;">
+					</div>
+				</div>
 			</div>
 		</div>
 		
 		<div class="col-xs-8">
-			<p><strong>{{ u.name }}</strong> - <em>{{ u.desc }}</em</p>
+			<h4><strong>{{ u.name }}</strong> - <em>{{ u.desc }}</em></h4>
 			<p>{{ u.longdesc }}</p>
 		</div>
 		

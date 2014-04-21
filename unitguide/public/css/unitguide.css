@@ -2,3 +2,16 @@
 body .pickFac {
   height: 40px;
 }
+/* line 6, ../../sass/src/unitguide.sass */
+body .zk-unit .badge {
+  float: right;
+  display: block;
+}
+/* line 9, ../../sass/src/unitguide.sass */
+body .zk-unit .title {
+  position: absolute;
+}
+/* line 11, ../../sass/src/unitguide.sass */
+body .progress {
+  margin-bottom: 4px;
+}

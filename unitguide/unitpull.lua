@@ -71,6 +71,7 @@ for k, v in pairs(unitdefs) do
 	s['speed'] = v['maxvelocity']
 	s['slope'] = v['maxslope']
 	s['sight'] = v['sightdistance']
+	s['health'] = v['maxdamage']
 	
 	-- are some helptexts missing?
 	if setContains(v, 'customparams') then
@@ -86,13 +87,21 @@ for k, v in pairs(unitdefs) do
 			-- comply with lowerkeys!
 			local gunName = string.lower(gun['def'])
 			s['gun'] = gunName
-			s['damage'] = v['weapondefs'][gunName]['damage']['default']
+			s['damage'] = math.ceil(v['weapondefs'][gunName]['damage']['default'])
 			s['range'] = v['weapondefs'][gunName]['range']
 			s['reload'] = v['weapondefs'][gunName]['reloadtime']
 			if setContains(s, 'damage') and setContains(s, 'reload') then
 				s['dps'] = math.floor(s['damage']/s['reload'])
 			end
 		end
+	end
+	-- no weapons
+	if (s['gun']) == nil then
+		s['gun'] = "unarmed"
+		s['dps'] = 0
+		s['damage'] = 0
+		s['range'] = 0
+		s['reload'] = 0
 	end
 	
 	-- forget about chickens

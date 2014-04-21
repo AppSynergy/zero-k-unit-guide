@@ -29,8 +29,11 @@ app.controller('MainCtrl', function($scope, $resource) {
 	
 	// display detail for units
 	$scope.unitStats = {
-		damage:'Damage',
-		dps:'DPS',
+		health: 'Health',
+		cost:   'Cost',
+		damage: 'Damage',
+		dps:    'DPS',
+		range:  'Range',
 	};
   
 });
