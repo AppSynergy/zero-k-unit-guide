@@ -5,6 +5,7 @@
 *.komodoproject
 *~
 unitguide/node_modules
+unitguide/sass/.sass-cache
 
 # Actual ZK project
 zk/

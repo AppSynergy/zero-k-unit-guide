@@ -17,9 +17,8 @@ app.controller('MainCtrl', function($scope, $resource) {
 	$scope.unitFilterByFac = function(units) {
 		console.log(units);
 		return function(u) {
-			//console.log(u.handle);
+			// return true if in units
 			var makes = units.indexOf(u.handle);
-			//console.log(makes);
 			return makes > 0;
 		}
 	}
