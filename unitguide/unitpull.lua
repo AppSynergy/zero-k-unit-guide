@@ -5,8 +5,10 @@
 -- ##################
 
 require 'lfs'
-path = "../zk/units/"
-unitfiles = {}
+local unitpath = "../zk/units/"
+local jsonpath = "./data/"
+local libpath = "./lib/"
+local unitfiles = {}
 
 -- need this defined in order to parse files
 function lowerkeys(t)
@@ -32,7 +34,7 @@ end
 
 -- collect all the unit files into a table
 c = 1
-for file in lfs.dir(path) do
+for file in lfs.dir(unitpath) do
 	for title, ext in string.gmatch(file, "([%w|_]+)\.(%w+)") do
 		-- ignore if it's not a .lua file
 		if ext == "lua" then
@@ -47,7 +49,7 @@ end
 -- read all these files and acquire the unit data
 unitdefs = {}
 for k, v in pairs(unitfiles) do 
-	local unit = dofile(path..v..".lua")
+	local unit = dofile(unitpath..v..".lua")
 	for k, v in pairs(unit) do 
 		unitdefs[k] = v
 	end
@@ -105,10 +107,10 @@ for k, v in pairs(unitdefs) do
 end
 
 -- save all to json files
-JSON = (loadfile "JSON.lua")()
+JSON = (loadfile (libpath.."JSON.lua"))()
 for _,r in pairs({factories, chickens, units}) do
 	local json = JSON:encode_pretty(r)
-	local file = io.open(r['title']..".json", "w")
+	local file = io.open(jsonpath..r['title']..".json", "w")
 	file:write(json)
 	file:close()
 end
