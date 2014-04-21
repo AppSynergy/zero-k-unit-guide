@@ -37,16 +37,10 @@ app.controller('MainCtrl', function($scope, $resource) {
 	};
 	
 	// figure out a good width for the "strength indicator"
-	$scope.myWidth = function(val, otherVals) {
-		var perc = (val/40)+"%";
-		console.log(val);
-		console.log(otherVals);
+	$scope.myWidth = function(key) {
+		var perc = (key/50 > 100) ? "100%" : (key/50)+"%";
+		console.log(key);
 		return perc;
 	}
-	
-	// fetch the stats of my factory-fellows
-	$scope.currentStats = function(key) {
-		return 1;
-	}
-  
+
 });
