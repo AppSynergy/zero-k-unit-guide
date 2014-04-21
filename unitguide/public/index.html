@@ -3,6 +3,7 @@
 <head>
 	<meta charset="UTF-8">
 	<title>Zero-K Unit Guide</title>
+	<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
 	<link rel="stylesheet" media="all" href="darkstrap/darkstrap.min.css">
 	<link rel="stylesheet" media="all" href="css/unitguide.css">
 	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.0.3/angular.js"></script>
@@ -13,7 +14,8 @@
 	<div class="container">
 		
 		<h2> Choose Factory:
-		<select ng-model="fac" ng-options="fac.name for fac in factories.data"
+		<select class="pickFac" ng-model="selectedFactory"
+			ng-options="fac.name for fac in factories.data"
 			ng-change="selectFactory();"></select>
 		</h2>
 		
@@ -22,10 +24,7 @@
 		<hr />
 		
 		<h4>Unit Production:</h4>
-		<div ng-model="fac" ng-repeat="u in units.data | filter:unitFilterByFac(fac.builds)">
-			<p><strong>{{ u.name }}</strong> - <em>{{ u.desc }}</em</p>
-			<p><span class="badge">{{ u.speed }}</span> {{ u.longdesc }}</p>
-		</div>
+		<div ng-include="'unitList.html'"></div>
 	</div>
 </body>
 </html>

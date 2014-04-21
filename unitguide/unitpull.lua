@@ -89,6 +89,9 @@ for k, v in pairs(unitdefs) do
 			s['damage'] = v['weapondefs'][gunName]['damage']['default']
 			s['range'] = v['weapondefs'][gunName]['range']
 			s['reload'] = v['weapondefs'][gunName]['reloadtime']
+			if setContains(s, 'damage') and setContains(s, 'reload') then
+				s['dps'] = math.floor(s['damage']/s['reload'])
+			end
 		end
 	end
 	

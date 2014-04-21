@@ -1,5 +1,4 @@
-/* line 2, ../../sass/src/unitguide.sass */
-body {
-  background-color: #222222;
-  color: #dddddd;
+/* line 3, ../../sass/src/unitguide.sass */
+body .pickFac {
+  height: 40px;
 }
