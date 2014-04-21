@@ -4,6 +4,7 @@
 .komodotools
 *.komodoproject
 *~
+unitguide/node_modules
 
 # Actual ZK project
 zk/

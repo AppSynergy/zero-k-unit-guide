@@ -6,7 +6,7 @@
 
 require 'lfs'
 local unitpath = "../zk/units/"
-local jsonpath = "./data/"
+local jsonpath = "./public/data/"
 local libpath = "./lib/"
 local unitfiles = {}
 
