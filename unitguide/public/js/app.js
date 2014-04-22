@@ -21,18 +21,23 @@ app.controller('MainCtrl', function($scope, $resource, $filter) {
 	
 	// find the details of current units
 	function getFilterStats(builds) {
-		console.log(builds);
 		// would rather just do $filter(unitFilterByFac)
 		var units = [];
 		angular.forEach($scope.units.data, function(u) {
 			var makes = builds.indexOf(u.handle);
 			if (makes > 0) units.push(u);
 		});
-		angular.forEach(units, function(u) {
-			angular.forEach($scope.unitStats, function(s) {
-				//sriously?
+		// loop through collecting stats
+		var stats = {}
+		angular.forEach($scope.unitStats, function(t,k) {
+			stats[k] = {'max': 0, 'vals':[]};
+			angular.forEach(units, function(u) {	
+				stats[k].vals.push(u[k]);
 			});
+			// some maths
+			stats[k].max = Math.max.apply(Math, stats[k].vals);
 		});
+		$scope.stats = stats;
 	}
 	
 	// used for filtering units list
@@ -54,9 +59,9 @@ app.controller('MainCtrl', function($scope, $resource, $filter) {
 	};
 	
 	// figure out a good width for the "strength indicator"
-	$scope.myWidth = function(key) {
-		var perc = (key/50 > 100) ? "100%" : (key/50)+"%";
-		//console.log(key);
+	$scope.myWidth = function(stat,val) {
+		var max = $scope.stats[stat].max;
+		var perc = (val/max > 1) ? "99%" : (100*val/max)+"%";
 		return perc;
 	}
 

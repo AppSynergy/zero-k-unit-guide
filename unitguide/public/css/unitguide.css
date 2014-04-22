@@ -4,18 +4,19 @@ body .pickFac {
 }
 /* line 6, ../../sass/src/unitguide.sass */
 body .zk-unit .badge {
-  float: right;
-  display: block;
+  right: 3px;
+  position: absolute;
 }
 /* line 9, ../../sass/src/unitguide.sass */
 body .zk-unit .title {
+  padding-left: 3px;
   position: absolute;
 }
-/* line 11, ../../sass/src/unitguide.sass */
+/* line 12, ../../sass/src/unitguide.sass */
 body .progress {
   margin-bottom: 4px;
 }
-/* line 13, ../../sass/src/unitguide.sass */
+/* line 14, ../../sass/src/unitguide.sass */
 body .progress-bar {
   background-color: #446655;
 }
