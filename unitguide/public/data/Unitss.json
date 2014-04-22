@@ -16,6 +16,22 @@
                     "speed": 12
              }, {
                   "builder": false,
+                     "cost": 0,
+                   "damage": 0,
+                     "desc": "Burrowing Mobile Seismic Detector",
+                      "dps": 0,
+                      "gun": "unarmed",
+                   "handle": "chicken_listener_b",
+                   "health": 700,
+                 "longdesc": "The Listener is an evolved form of the Digger. While it has lost all fighting ability, it has gained a unique sense of hearing that allows it to pinpoint the location of enemy ground forces.",
+                     "name": "Listener (burrowed)",
+                    "range": 0,
+                   "reload": 0,
+                    "sight": 0,
+                    "slope": 72,
+                    "speed": 0.3
+             }, {
+                  "builder": false,
                      "cost": 250,
                    "damage": 0,
                      "desc": "Black Hole Launcher",
@@ -30,6 +46,22 @@
                     "sight": 605,
                     "slope": 36,
                     "speed": 2
+             }, {
+                  "builder": false,
+                     "cost": 0,
+                   "damage": 140,
+                     "desc": "All-Terrain Riot",
+                      "dps": 46,
+                      "gun": "weapon",
+                   "handle": "chickenc",
+                   "health": 1800,
+                 "longdesc": "The Basilisk climbs walls like a spider to surprise the enemy with its highly acidic spit. Only a vigilant watch keeps these critters from sauntering over hills to wreck your base from unexpected directions. Gunships are the best solution to Basilisk incursions.",
+                     "name": "Basilisk",
+                    "range": 400,
+                   "reload": 3,
+                    "sight": 512,
+                    "slope": 72,
+                    "speed": 2.2
              }, {
                   "builder": false,
                      "cost": 650,
@@ -251,6 +283,22 @@
                     "speed": 0
              }, {
                   "builder": false,
+                     "cost": 0,
+                   "damage": 80,
+                     "desc": "Swarmer",
+                      "dps": 66,
+                      "gun": "weapon",
+                   "handle": "chicken",
+                   "health": 270,
+                 "longdesc": "The footsoldier of the Thunderbirds is an aggressive zergling-type unit. What it lacks in individual strength, it compensates for with its sheer numbers, overwhelming enemies with floods and floods of little chickens. A good riot unit is recommended for stopping them.",
+                     "name": "Chicken",
+                    "range": 80,
+                   "reload": 1.2,
+                    "sight": 256,
+                    "slope": 36,
+                    "speed": 2.9
+             }, {
+                  "builder": false,
                      "cost": 1200,
                    "damage": 1200,
                      "desc": "Medium Range Defense Fortress - Requires 50 Power (Main Gun)",
@@ -419,6 +467,22 @@
                     "sight": 325,
                     "slope": 36,
                     "speed": 2.8
+             }, {
+                  "builder": false,
+                     "cost": 0,
+                   "damage": 180,
+                     "desc": "Heavy Artillery",
+                      "dps": 22,
+                      "gun": "weapon",
+                   "handle": "chickenblobber",
+                   "health": 2400,
+                 "longdesc": "The Lobber's big brother, the Blobber hurls a wide-scatter rain of acid goo. It can pummel even the toughest shield network very quickly, but remains relatively prone to direct attack.",
+                     "name": "Blobber",
+                    "range": 1350,
+                   "reload": 8,
+                    "sight": 1200,
+                    "slope": 36,
+                    "speed": 1.8
              }, {
                   "builder": true,
                      "cost": 1200,
@@ -696,6 +760,22 @@
                     "speed": 2.4
              }, {
                   "builder": false,
+                     "cost": 0,
+                   "damage": 1500,
+                     "desc": "Clucking Hell!",
+                      "dps": 250,
+                      "gun": "goo",
+                   "handle": "chickenflyerqueen",
+                   "health": 150000,
+                 "longdesc": "Two words: RUN AWAY! The Chicken Queen is the matriach of the Thunderbird colony, and when aggravated is virtually impossible to stop. She can spit immensely powerful acid, drop land chickens, and spray spores to kill aircraft. Only the most determined, focused assault can hope to stop this beast in her tracks.",
+                     "name": "Chicken Flyer Queen",
+                    "range": 500,
+                   "reload": 6,
+                    "sight": 4096,
+                    "slope": 36,
+                    "speed": 3
+             }, {
+                  "builder": false,
                      "cost": 2200,
                    "damage": 1000,
                      "desc": "Very Heavy Tank Buster",
@@ -773,6 +853,22 @@
                     "sight": 273,
                     "slope": 18,
                     "speed": 0
+             }, {
+                  "builder": false,
+                     "cost": 0,
+                   "damage": 80,
+                     "desc": "Burrowing Scout/Raider",
+                      "dps": 66,
+                      "gun": "weapon",
+                   "handle": "chicken_digger_b",
+                   "health": 180,
+                 "longdesc": "The Digger's strong claws can scoop through the hardest rock like gravy. As such, it can burrow and travel underground (very slowly), where the only way to locate it is with sesimic detection equipment.",
+                     "name": "Digger (burrowed)",
+                    "range": 100,
+                   "reload": 1.2,
+                    "sight": 0,
+                    "slope": 72,
+                    "speed": 0.9
              }, {
                      "cost": 250,
                    "damage": 5,
@@ -948,6 +1044,22 @@
                     "speed": 0
              }, {
                   "builder": false,
+                     "cost": 0,
+                   "damage": 160,
+                     "desc": "Flying Spike Spitter",
+                      "dps": 106,
+                      "gun": "weapon",
+                   "handle": "chickenf",
+                   "health": 1200,
+                 "longdesc": "It's a flying chicken! The Talon is a lethal predator that takes down enemy aircraft with its spikes, but will also happily employ them on ground targets. It can be defeated like any other air unit, however.",
+                     "name": "Talon",
+                    "range": 400,
+                   "reload": 1.5,
+                    "sight": 512,
+                    "slope": 18,
+                    "speed": 10
+             }, {
+                  "builder": false,
                      "cost": 4500,
                    "damage": 36,
                      "desc": "Flying Fortress",
@@ -1007,6 +1119,21 @@
                     "sight": 325,
                     "speed": 2.5
              }, {
+                  "builder": false,
+                     "cost": 0,
+                   "damage": 1000,
+                     "desc": "Clucking Hell!",
+                      "dps": 1000,
+                      "gun": "melee",
+                   "handle": "chickenlandqueen",
+                   "health": 200000,
+                 "longdesc": "Two words: RUN AWAY! The Chicken Queen is the matriach of the Thunderbird colony, and when aggravated is virtually impossible to stop. It can spit fiery napalm, spray spores to kill aircraft, and kick land units away from it. Most of all, its jaws can rip apart the largest assault mech in seconds. Only the most determined, focused assault can hope to stop this beast in her tracks.",
+                     "name": "Chicken Queen",
+                    "range": 200,
+                   "reload": 1,
+                    "sight": 2048,
+                    "speed": 2.5
+             }, {
                   "builder": true,
                      "cost": 160,
                    "damage": 180,
@@ -1023,6 +1150,22 @@
                     "slope": 36,
                     "speed": 2.1
              }, {
+                  "builder": false,
+                     "cost": 0,
+                   "damage": 75,
+                     "desc": "All-Terrain Spores (AA/Skirm)",
+                      "dps": 12,
+                      "gun": "spores",
+                   "handle": "chicken_sporeshooter",
+                   "health": 1800,
+                 "longdesc": "The Sporeshooter shoots spores to drop aircraft and hit land targets from a distance. Can climb walls for surprise attacks.",
+                     "name": "Sporeshooter",
+                    "range": 600,
+                   "reload": 6,
+                    "sight": 512,
+                    "slope": 72,
+                    "speed": 2.2
+             }, {
                      "cost": 4500,
                    "damage": 400,
                      "desc": "Very Heavy Support Spider",
@@ -1037,6 +1180,22 @@
                     "sight": 650,
                     "slope": 36,
                     "speed": 1.5
+             }, {
+                  "builder": false,
+                     "cost": 0,
+                   "damage": 0,
+                     "desc": "Dodo Bomber",
+                      "dps": 0,
+                      "gun": "bogus_bomb",
+                   "handle": "chicken_blimpy",
+                   "health": 1850,
+                 "longdesc": "Blimpy drops a Dodo on unsuspecting armies and bases.",
+                     "name": "Blimpy",
+                    "range": 300,
+                   "reload": 0.5,
+                    "sight": 512,
+                    "slope": 18,
+                    "speed": 5
              }, {
                      "cost": 350,
                    "damage": 500,
@@ -1273,6 +1432,22 @@
                     "speed": 0
              }, {
                   "builder": false,
+                     "cost": 0,
+                   "damage": 240,
+                     "desc": "Artillery",
+                      "dps": 40,
+                      "gun": "weapon",
+                   "handle": "chickenr",
+                   "health": 500,
+                 "longdesc": "A form of organic artillery, the Lobber hurls balls of venom at a high trajectory over long distances. It proves a problem for those who rely excessively on static defenses, but is practically helpless when attacked directly.",
+                     "name": "Lobber",
+                    "range": 950,
+                   "reload": 6,
+                    "sight": 1000,
+                    "slope": 36,
+                    "speed": 1.8
+             }, {
+                  "builder": false,
                      "cost": 35000,
                    "damage": -0,
                      "desc": "Planetary Energy Chisel",
@@ -1410,6 +1585,22 @@
                     "speed": 7.8
              }, {
                   "builder": false,
+                     "cost": 0,
+                   "damage": 15,
+                     "desc": "All-Terrain Support",
+                      "dps": 150,
+                      "gun": "web",
+                   "handle": "chicken_spidermonkey",
+                   "health": 1500,
+                 "longdesc": "The Spidermonkey is a very unusual support chicken. As the name suggests, it can climb walls, however it can also spin a silk line that slows and yanks enemies.",
+                     "name": "Spidermonkey",
+                    "range": 600,
+                   "reload": 0.1,
+                    "sight": 700,
+                    "slope": 72,
+                    "speed": 2.2
+             }, {
+                  "builder": false,
                      "cost": 70,
                    "damage": 0,
                      "desc": "Patrol Boat (Scout/Raider)",
@@ -1517,6 +1708,22 @@
                    "reload": 0.3,
                     "sight": 500,
                     "speed": 8.56
+             }, {
+                  "builder": false,
+                     "cost": 0,
+                   "damage": 180,
+                     "desc": "Skirmisher",
+                      "dps": 60,
+                      "gun": "weapon",
+                   "handle": "chickens",
+                   "health": 600,
+                 "longdesc": "The Spiker's razor sharp projectiles can pierce even the thickest armor. While it doesn't have much health, it remains a potent threat to both air and ground units. Counter with anything that can reliably outrange it.",
+                     "name": "Spiker",
+                    "range": 460,
+                   "reload": 3,
+                    "sight": 550,
+                    "slope": 36,
+                    "speed": 2
              }, {
                   "builder": false,
                      "cost": 500,
@@ -1678,6 +1885,22 @@
                     "speed": 1.2
              }, {
                   "builder": false,
+                     "cost": 0,
+                   "damage": 40,
+                     "desc": "Burrowing Scout/Raider",
+                      "dps": 33,
+                      "gun": "weapon",
+                   "handle": "chicken_digger",
+                   "health": 180,
+                 "longdesc": "The Digger's strong claws can scoop through the hardest rock like gravy. As such, it can undetectably travel underground and appear anyplace it can cause mayhem. Protect your valuables directly, as Diggers can bypass your main defense lines.",
+                     "name": "Digger",
+                    "range": 60,
+                   "reload": 1.2,
+                    "sight": 256,
+                    "slope": 36,
+                    "speed": 3
+             }, {
+                  "builder": false,
                      "cost": 220,
                    "damage": 45,
                      "desc": "Anti-Swarm Turret",
@@ -1753,6 +1976,38 @@
                     "sight": 660,
                     "slope": 72,
                     "speed": 1.7
+             }, {
+                  "builder": false,
+                     "cost": 0,
+                   "damage": 60,
+                     "desc": "Defense and energy source",
+                      "dps": 5,
+                      "gun": "spores",
+                   "handle": "chickend",
+                   "health": 500,
+                 "longdesc": "The Tube is the chickens' only defense structure, firing deadly spores at air and ground targets alike.",
+                     "name": "Chicken Tube",
+                    "range": 460,
+                   "reload": 12,
+                    "sight": 512,
+                    "slope": 36,
+                    "speed": 0
+             }, {
+                  "builder": false,
+                     "cost": 0,
+                   "damage": 1700,
+                     "desc": "Assault/Anti-Armor",
+                      "dps": 242,
+                      "gun": "weapon",
+                   "handle": "chickena",
+                   "health": 2800,
+                 "longdesc": "The Cockatrice is truly a beast. Seemingly impervious to enemy fire, it casually walks up to its target and dismembers it with its incredibly powerful jaws. Fortunately, it is not fast or particularly intelligent, and can be destroyed with skirmishers or swarmers easily.",
+                     "name": "Cockatrice",
+                    "range": 140,
+                   "reload": 7,
+                    "sight": 256,
+                    "slope": 37,
+                    "speed": 1.8
              }, {
                   "builder": false,
                      "cost": 40,
@@ -1969,6 +2224,21 @@
                     "sight": 480,
                     "speed": 4
              }, {
+                  "builder": false,
+                     "cost": 0,
+                   "damage": 2000,
+                     "desc": "Clucking Hell!",
+                      "dps": 5000,
+                      "gun": "melee",
+                   "handle": "chickenq",
+                   "health": 200000,
+                 "longdesc": "Two words: RUN AWAY! The Chicken Queen is the matriach of the Thunderbird colony, and when aggravated is virtually impossible to stop. It can spit acid, spray spores to kill aircraft, and kick land units away from it. Most of all, its jaws can rip apart the largest assault mech in seconds. Only the most determined, focused assault can hope to stop this beast in her tracks.",
+                     "name": "Chicken Queen",
+                    "range": 200,
+                   "reload": 0.4,
+                    "sight": 2048,
+                    "speed": 2.5
+             }, {
                      "cost": 300,
                    "damage": 150,
                      "desc": "Inflatable Amphibious Bot",
@@ -2030,6 +2300,22 @@
                     "sight": 450,
                     "slope": 36,
                     "speed": 4.8
+             }, {
+                  "builder": false,
+                     "cost": 0,
+                   "damage": 0,
+                     "desc": "Flying Spore Scout",
+                      "dps": 0,
+                      "gun": "bogus_bomb",
+                   "handle": "chicken_pigeon",
+                   "health": 150,
+                 "longdesc": "A small flying chicken scout with spore.",
+                     "name": "Pigeon",
+                    "range": 10,
+                   "reload": 2,
+                    "sight": 512,
+                    "slope": 18,
+                    "speed": 10
              }, {
                   "builder": false,
                      "cost": 80,
@@ -2292,6 +2578,22 @@
                     "sight": 420,
                     "slope": 36,
                     "speed": 3
+             }, {
+                  "builder": false,
+                     "cost": 0,
+                   "damage": 0,
+                     "desc": "Burrowing Mobile Seismic Detector",
+                      "dps": 0,
+                      "gun": "unarmed",
+                   "handle": "chicken_listener",
+                   "health": 700,
+                 "longdesc": "The Listener is an evolved form of the Digger. While it has lost all fighting ability, it has gained a unique sense of hearing that allows it to pinpoint the location of enemy ground forces.",
+                     "name": "Listener",
+                    "range": 0,
+                   "reload": 0,
+                    "sight": 700,
+                    "slope": 36,
+                    "speed": 0.6
              }, {
                      "cost": 550,
                    "damage": 0,
@@ -2911,6 +3213,22 @@
                     "speed": 0
              }, {
                   "builder": false,
+                     "cost": 0,
+                   "damage": 200,
+                     "desc": "Heavy Attack Flyer",
+                      "dps": 25,
+                      "gun": "goo",
+                   "handle": "chicken_roc",
+                   "health": 2500,
+                 "longdesc": "Large, angry and capable of fighting both air and land opposition, the Roc is a formidable flying chicken.",
+                     "name": "Roc",
+                    "range": 500,
+                   "reload": 8,
+                    "sight": 750,
+                    "slope": 36,
+                    "speed": 3
+             }, {
+                  "builder": false,
                      "cost": 300,
                    "damage": 190,
                      "desc": "Multi-Role/AA Gunship",
@@ -2973,6 +3291,22 @@
                     "slope": 36,
                     "speed": 0
              }, {
+                  "builder": false,
+                     "cost": 0,
+                   "damage": 1000,
+                     "desc": "Static Artillery",
+                      "dps": 100,
+                      "gun": "slamspore",
+                   "handle": "chickenspire",
+                   "health": 1500,
+                 "longdesc": "Long range static artillery.",
+                     "name": "Chicken Spire",
+                    "range": 4500,
+                   "reload": 10,
+                    "sight": 512,
+                    "slope": 36,
+                    "speed": 0
+             }, {
                   "builder": true,
                      "cost": 140,
                    "damage": 10,
@@ -3016,6 +3350,38 @@
                     "sight": 420,
                     "slope": 36,
                     "speed": 2
+             }, {
+                  "builder": false,
+                     "cost": 0,
+                   "damage": 50,
+                     "desc": "Hopping Raider",
+                      "dps": 50,
+                      "gun": "weapon",
+                   "handle": "chicken_leaper",
+                   "health": 720,
+                 "longdesc": "The Leaper is the chickens' fast attack unit, running down enemies and leaping over obstacles.",
+                     "name": "Leaper",
+                    "range": 100,
+                   "reload": 1,
+                    "sight": 256,
+                    "slope": 36,
+                    "speed": 4
+             }, {
+                  "builder": false,
+                     "cost": 0,
+                   "damage": 300,
+                     "desc": "Heavy Assault/Riot",
+                      "dps": 200,
+                      "gun": "jaws",
+                   "handle": "chicken_tiamat",
+                   "health": 3650,
+                 "longdesc": "The ultimate assault chicken, the Tiamat is a fire-breathing, iron-jawed, spore-spewing monstrosity that knows no fear, no mercy. It even has a mucous shield to protect itself and surrounding chickens from damage.",
+                     "name": "Tiamat",
+                    "range": 160,
+                   "reload": 1.5,
+                    "sight": 256,
+                    "slope": 37,
+                    "speed": 2.3
              }, {
                   "builder": false,
                      "cost": 400,
@@ -3109,6 +3475,38 @@
                     "sight": 500,
                     "slope": 36,
                     "speed": 2.5
+             }, {
+                  "builder": false,
+                     "cost": 0,
+                   "damage": 50,
+                     "desc": "Burrowing Flamer (Assault/Riot)",
+                      "dps": 8,
+                      "gun": "napalm",
+                   "handle": "chickenwurm",
+                   "health": 1500,
+                 "longdesc": "The Wurm \"burrows\" under the surface of the ground, revealing itself to hurl a ball of fire that immolates a large swathe of terrain. It can climb cliffs and surprise defense turrets, but is weak to assaults.",
+                     "name": "Wurm",
+                    "range": 300,
+                   "reload": 6,
+                    "sight": 384,
+                    "slope": 90,
+                    "speed": 1.8
+             }, {
+                  "builder": false,
+                     "cost": 0,
+                   "damage": 1,
+                     "desc": "Shield/AA",
+                      "dps": 0,
+                      "gun": "fake_weapon",
+                   "handle": "chicken_shield",
+                   "health": 1600,
+                 "longdesc": "Protects adjacent chickens.",
+                     "name": "Toad",
+                    "range": 420,
+                   "reload": 10,
+                    "sight": 512,
+                    "slope": 37,
+                    "speed": 1.8
              }, {
                   "builder": false,
                      "cost": 220,
@@ -3267,5 +3665,5 @@
                     "slope": 18,
                     "speed": 0
              } ],
-    "title": "Units"
+    "title": "Unitss"
 }
