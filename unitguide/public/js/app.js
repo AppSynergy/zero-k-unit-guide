@@ -56,6 +56,7 @@ app.controller('MainCtrl', function($scope, $resource, $filter) {
 		damage: 'Damage',
 		dps:    'DPS',
 		range:  'Range',
+		speed:  'Speed',
 	};
 	
 	// figure out a good width for the "strength indicator"

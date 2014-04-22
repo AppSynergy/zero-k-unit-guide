@@ -25,4 +25,4 @@ for _,r in pairs({factories, chickens, units, statics}) do
 	file:close()
 end
 
-require 'pl.pretty'.dump(units)
+--require 'pl.pretty'.dump(units)
