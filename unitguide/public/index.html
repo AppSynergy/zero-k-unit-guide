@@ -13,12 +13,14 @@
 <body ng-controller="MainCtrl">
 	<div class="container">
 		
+		<hr />
 		<h2> Choose Factory:
 		<select class="pickFac" ng-model="selectedFactory"
 			ng-options="fac.name for fac in factories.data"
 			ng-change="selectFactory();"></select>
 		</h2>
 		
+		<hr />
 		<p><em>{{ selectedFactory.desc }}</em></p>
 		<p>{{ selectedFactory.longdesc }}</p>
 		<hr />

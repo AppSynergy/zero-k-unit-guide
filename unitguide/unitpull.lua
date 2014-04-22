@@ -32,6 +32,15 @@ function setContains(set, key)
     return set[key] ~= nil
 end
 
+-- table maxima
+function table.max(t)
+   local mv
+   for _, value in pairs(t) do
+      mv = ((not mv or value > mv) and value)  or mv
+   end
+   return mv
+end
+
 -- collect all the unit files into a table
 c = 1
 for file in lfs.dir(unitpath) do
@@ -87,7 +96,9 @@ for k, v in pairs(unitdefs) do
 			-- comply with lowerkeys!
 			local gunName = string.lower(gun['def'])
 			s['gun'] = gunName
-			s['damage'] = math.ceil(v['weapondefs'][gunName]['damage']['default'])
+			local gunDamages = v['weapondefs'][gunName]['damage']
+			-- take the largest damage class - probably the right one!
+			s['damage'] = math.ceil(table.max(gunDamages))
 			s['range'] = v['weapondefs'][gunName]['range']
 			s['reload'] = v['weapondefs'][gunName]['reloadtime']
 			if setContains(s, 'damage') and setContains(s, 'reload') then

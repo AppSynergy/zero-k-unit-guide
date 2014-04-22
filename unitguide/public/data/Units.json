@@ -380,9 +380,9 @@
              }, {
                   "builder": false,
                      "cost": 2400,
-                   "damage": 175,
+                   "damage": 1750,
                      "desc": "Very Long-Range AA Missile Tower, 20 second stockpile",
-                      "dps": 97,
+                      "dps": 972,
                       "gun": "advsam",
                    "handle": "screamer",
                    "health": 1570,
@@ -474,9 +474,9 @@
              }, {
                   "builder": false,
                      "cost": 300,
-                   "damage": 42,
+                   "damage": 413,
                      "desc": "AA Hover",
-                      "dps": 8,
+                      "dps": 82,
                       "gun": "weapon",
                    "handle": "hoveraa",
                    "health": 1300,
@@ -489,9 +489,9 @@
                     "speed": 3.54
              }, {
                      "cost": 400,
-                   "damage": 22,
+                   "damage": 220,
                      "desc": "Anti-Air Spider",
-                      "dps": 11,
+                      "dps": 110,
                       "gun": "aa",
                    "handle": "spideraa",
                    "health": 1200,
@@ -627,9 +627,9 @@
                     "speed": 2.5
              }, {
                      "cost": 220,
-                   "damage": 16,
+                   "damage": 160,
                      "desc": "Amphibious AA Bot",
-                      "dps": 1,
+                      "dps": 16,
                       "gun": "missile",
                    "handle": "amphaa",
                    "health": 1100,
@@ -643,9 +643,9 @@
              }, {
                   "builder": false,
                      "cost": 550,
-                   "damage": 9,
+                   "damage": 90,
                      "desc": "Flak Tank",
-                      "dps": 22,
+                      "dps": 225,
                       "gun": "flak",
                    "handle": "corsent",
                    "health": 1200,
@@ -674,9 +674,9 @@
                     "speed": 0
              }, {
                      "cost": 300,
-                   "damage": 2,
+                   "damage": 11,
                      "desc": "Air Superiority Fighter",
-                      "dps": 20,
+                      "dps": 110,
                       "gun": "laser",
                    "handle": "corvamp",
                    "health": 1100,
@@ -734,9 +734,9 @@
              }, {
                   "builder": false,
                      "cost": 400,
-                   "damage": 65,
+                   "damage": 650,
                      "desc": "SAM Tower (Anti-Bomber)",
-                      "dps": 5,
+                      "dps": 50,
                       "gun": "missile",
                    "handle": "missiletower",
                    "health": 1500,
@@ -1305,9 +1305,9 @@
              }, {
                   "builder": false,
                      "cost": 900,
-                   "damage": 25,
+                   "damage": 250,
                      "desc": "Long-Range AA Missile Battery",
-                      "dps": 25,
+                      "dps": 250,
                       "gun": "missile",
                    "handle": "armcir",
                    "health": 2500,
@@ -1429,9 +1429,9 @@
                     "speed": 1.6
              }, {
                      "cost": 90,
-                   "damage": 8,
+                   "damage": 80,
                      "desc": "Anti-air Bot",
-                      "dps": 4,
+                      "dps": 40,
                       "gun": "armkbot_missile",
                    "handle": "corcrash",
                    "health": 650,
@@ -1932,9 +1932,9 @@
              }, {
                   "builder": false,
                      "cost": 280,
-                   "damage": 2,
+                   "damage": 17,
                      "desc": "Hardened Anti-Air Laser",
-                      "dps": 20,
+                      "dps": 170,
                       "gun": "aagun",
                    "handle": "corrazor",
                    "health": 3000,
@@ -2444,9 +2444,9 @@
                     "speed": 2.5
              }, {
                      "cost": 150,
-                   "damage": 3,
+                   "damage": 21,
                      "desc": "Anti-air Bot",
-                      "dps": 10,
+                      "dps": 70,
                       "gun": "aa_laser",
                    "handle": "armjeth",
                    "health": 550,
@@ -2632,9 +2632,9 @@
              }, {
                   "builder": false,
                      "cost": 400,
-                   "damage": 12,
+                   "damage": 120,
                      "desc": "AA Gunship",
-                      "dps": 10,
+                      "dps": 104,
                       "gun": "aa_missile",
                    "handle": "gunshipaa",
                    "health": 1500,
@@ -2773,9 +2773,9 @@
              }, {
                   "builder": false,
                      "cost": 400,
-                   "damage": 2,
+                   "damage": 14,
                      "desc": "Anti-Air Frigate",
-                      "dps": 20,
+                      "dps": 140,
                       "gun": "aalaser",
                    "handle": "shipaa",
                    "health": 1900,
@@ -3051,9 +3051,9 @@
              }, {
                   "builder": false,
                      "cost": 500,
-                   "damage": 15,
+                   "damage": 145,
                      "desc": "Anti-Air Flak Gun",
-                      "dps": 30,
+                      "dps": 290,
                       "gun": "armflak_gun",
                    "handle": "corflak",
                    "health": 3000,
@@ -3113,9 +3113,9 @@
                     "speed": 3
              }, {
                      "cost": 550,
-                   "damage": 2,
+                   "damage": 19,
                      "desc": "Heavy Anti-Air Jumper",
-                      "dps": 20,
+                      "dps": 190,
                       "gun": "laser",
                    "handle": "armaak",
                    "health": 1500,
@@ -3433,9 +3433,9 @@
              }, {
                   "builder": false,
                      "cost": 260,
-                   "damage": 32,
+                   "damage": 320,
                      "desc": "Fast AA Vehicle",
-                      "dps": 8,
+                      "dps": 80,
                       "gun": "missile",
                    "handle": "vehaa",
                    "health": 900,

@@ -25,7 +25,7 @@ app.controller('MainCtrl', function($scope, $resource, $filter) {
 		var units = [];
 		angular.forEach($scope.units.data, function(u) {
 			var makes = builds.indexOf(u.handle);
-			if (makes > 0) units.push(u);
+			if (makes > -1) units.push(u);
 		});
 		// loop through collecting stats
 		var stats = {}
@@ -45,7 +45,7 @@ app.controller('MainCtrl', function($scope, $resource, $filter) {
 		return function(u) {
 			// return true if in the build list
 			var makes = units.indexOf(u.handle);
-			return makes > 0;
+			return makes > -1;
 		}
 	}
 	
@@ -61,7 +61,7 @@ app.controller('MainCtrl', function($scope, $resource, $filter) {
 	// figure out a good width for the "strength indicator"
 	$scope.myWidth = function(stat,val) {
 		var max = $scope.stats[stat].max;
-		var perc = (val/max > 1) ? "99%" : (100*val/max)+"%";
+		var perc = (val/max > 0.99) ? "99%" : (100*val/max)+"%";
 		return perc;
 	}
 
