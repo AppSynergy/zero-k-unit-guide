@@ -15,7 +15,7 @@ require(libpath..'/tableTools')
 
 -- what are you real names, and are you units?
 require(libpath..'/filterUnits')
-factories, chickens, units = filterUnits()
+factories, chickens, units, statics = filterUnits()
 unitPicHandles = {}
 for c,u in pairs(units['data']) do
 	if setContains(u, 'pic') then

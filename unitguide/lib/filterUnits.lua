@@ -21,6 +21,7 @@ function filterUnits()
 	local units = {title = 'Units', data = {}}
 	local factories = {title = 'Factories', data = {}}
 	local chickens = {title = 'Chickens', data = {}}
+	local statics = {title = 'Statics', data = {}}
 	for k, v in pairs(unitdefs) do
 		local s = {}
 		
@@ -83,9 +84,13 @@ function filterUnits()
 			-- what can I build?
 			s['builds'] = v['buildoptions']
 			table.insert(factories['data'], s)
+		-- statics don't jump
+		elseif setContains(s, 'speed') and s['speed'] == 0 then
+			table.insert(statics['data'], s)
+		-- must be a unit, I suppose
 		else
 			table.insert(units['data'], s)
 		end
 	end
-	return factories, chickens, units
+	return factories, chickens, units, statics
 end
