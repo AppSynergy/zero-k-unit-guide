@@ -35,6 +35,11 @@ function filterUnits()
 		s['sight'] = v['sightdistance']
 		s['health'] = v['maxdamage']
 		
+		
+		if setContains(v, 'buildpic') then
+			s['pic'] = string.lower(v['buildpic'])
+		end
+		
 		-- are some helptexts missing?
 		if setContains(v, 'customparams') then
 			s['longdesc'] = v['customparams']['helptext']
