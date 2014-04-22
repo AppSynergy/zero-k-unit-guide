@@ -20,3 +20,8 @@ body .progress {
 body .progress-bar {
   background-color: #446655;
 }
+/* line 16, ../../sass/src/unitguide.sass */
+body .unitPic {
+  float: left;
+  padding: 0 10px 0 0;
+}
