@@ -23,8 +23,6 @@ for c,u in pairs(units['data']) do
 	end
 end
 
-require 'pl.pretty'.dump(unitPicHandles)
-
 -- collect all the unit pics into a table
 require(libpath..'/copyFile')
 pics = {}
@@ -44,3 +42,5 @@ for file in lfs.dir(unitpicspath) do
 		end
 	end
 end
+
+--require 'pl.pretty'.dump(unitPicHandles)

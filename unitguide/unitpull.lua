@@ -24,3 +24,5 @@ for _,r in pairs({factories, chickens, units}) do
 	file:write(json)
 	file:close()
 end
+
+--require 'pl.pretty'.dump(units)
