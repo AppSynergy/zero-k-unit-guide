@@ -1,3 +1,0 @@
-[submodule "zkug-pages"]
-	path = unitguide/public
-	url = git@github.com:AppSynergy/zero-k-unit-guide/.git unitguide/public
