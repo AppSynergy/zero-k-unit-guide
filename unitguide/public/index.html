@@ -16,7 +16,7 @@
 		<hr />
 		<h2> Choose Factory:
 		<select class="pickFac" ng-model="selectedFactory"
-			ng-options="fac.name for fac in factories.data"
+			ng-options="fac.name for fac in factories.data | orderBy:facSort:facSeq"
 			ng-change="selectFactory();"></select>
 		</h2>
 		

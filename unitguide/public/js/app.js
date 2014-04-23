@@ -6,12 +6,12 @@ app.controller('MainCtrl', function($scope, $resource, $filter) {
 	$scope.factories = $resource('../data/Factories.json').get(function() {
 		// fetch units
 		$scope.units = $resource('../data/Units.json').get(function() {
-			// default to first factory (Cloaky)
-			var fac = $scope.factories.data[0];
+			// default to... I dunno... Cloaky?
+			var fac = $scope.factories.data[10];
 			getFilterStats(fac.builds);
 			$scope.selectedFactory = fac;
 		});	
-	});	
+	});
 	
 	// choose a new factory
 	$scope.selectFactory = function() {
@@ -59,11 +59,26 @@ app.controller('MainCtrl', function($scope, $resource, $filter) {
 		speed:  'Speed',
 	};
 	
+	// sort fields
+	$scope.sortFields = angular.copy($scope.unitStats);
+	$scope.sortFields['name'] = 'Name';
+	
+	// default sorting - alphabetical
+	$scope.unitSort = 'name';
+	$scope.unitSeq = false;
+	$scope.facSort = 'name';
+	
+	$scope.unitSortCallback = function(sortBy) {
+		// swap order if no other changes
+		if ($scope.unitSort == sortBy) $scope.unitSeq = !$scope.unitSeq;
+		$scope.unitSort = sortBy;
+	}
+	
 	// figure out a good width for the "strength indicator"
 	$scope.myWidth = function(stat,val) {
 		var max = $scope.stats[stat].max;
-		var perc = (val/max > 0.99) ? "99%" : (100*val/max)+"%";
+		var perc = (val/max > 0.99) ? "100%" : Math.floor((100*val/max))+"%";
 		return perc;
-	}
+	};
 
 });

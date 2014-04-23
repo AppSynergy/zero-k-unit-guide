@@ -1,5 +1,12 @@
+<p>Sort units by: 
+	<button class="btn btn-primary"		
+		ng-click="unitSortCallback(key);"
+		ng-repeat="(key, title) in sortFields"
+	>{{ title }}</button>
+</p>
+
 <div class=" zk-unit well" ng-model="fac"
-	ng-repeat="u in units.data | filter:unitFilterByFac(selectedFactory.builds)">
+	ng-repeat="u in units.data | filter:unitFilterByFac(selectedFactory.builds) | orderBy:unitSort:unitSeq">
 	<div class="row">
 		
 		<div class="col-xs-3">

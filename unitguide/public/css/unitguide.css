@@ -1,26 +1,38 @@
-/* line 3, ../../sass/src/unitguide.sass */
+/* line 7, ../../sass/src/unitguide.sass */
+body .btn-primary {
+  background-color: #4c90a6;
+  border-color: #cbd3d4;
+  margin: 6px;
+}
+/* line 11, ../../sass/src/unitguide.sass */
+body .btn-primary:hover {
+  background-color: #38bfec;
+  border-color: #cbd3d4;
+}
+/* line 14, ../../sass/src/unitguide.sass */
 body .pickFac {
   height: 40px;
 }
-/* line 6, ../../sass/src/unitguide.sass */
+/* line 17, ../../sass/src/unitguide.sass */
 body .zk-unit .badge {
   right: 3px;
   position: absolute;
+  height: 20px;
 }
-/* line 9, ../../sass/src/unitguide.sass */
+/* line 21, ../../sass/src/unitguide.sass */
 body .zk-unit .title {
   padding-left: 3px;
   position: absolute;
 }
-/* line 12, ../../sass/src/unitguide.sass */
+/* line 24, ../../sass/src/unitguide.sass */
 body .progress {
   margin-bottom: 4px;
 }
-/* line 14, ../../sass/src/unitguide.sass */
+/* line 26, ../../sass/src/unitguide.sass */
 body .progress-bar {
-  background-color: #446655;
+  background-color: #4c90a6;
 }
-/* line 16, ../../sass/src/unitguide.sass */
+/* line 28, ../../sass/src/unitguide.sass */
 body .unitPic {
   float: left;
   padding: 0 10px 0 0;
