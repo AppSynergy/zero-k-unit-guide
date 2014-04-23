@@ -620,6 +620,23 @@
                     "slope": 36,
                     "speed": 2.8
              }, {
+                  "builder": false,
+                     "cost": 600,
+                   "damage": 3500,
+                     "desc": "Tactical Nuke",
+                      "dps": 350,
+                      "gun": "weapon",
+                   "handle": "tacnuke",
+                   "health": 1000,
+                 "longdesc": "A long-range precision strike weapon. The Eos' blast radius is small, but lethal.",
+                     "name": "Eos",
+                      "pic": "tacnuke.png",
+                    "range": 3500,
+                   "reload": 10,
+                    "sight": 0,
+                    "slope": 18,
+                    "speed": 0
+             }, {
                      "cost": 250,
                    "damage": 5,
                      "desc": "Riot EMP Spider",
@@ -1014,6 +1031,23 @@
                     "sight": 660,
                     "speed": 6
              }, {
+                  "builder": false,
+                     "cost": 600,
+                   "damage": 30000,
+                     "desc": "EMP missile",
+                      "dps": 10000,
+                      "gun": "emp_weapon",
+                   "handle": "empmissile",
+                   "health": 1000,
+                 "longdesc": "The Shockley disables units in a small area for up to 45 seconds.",
+                     "name": "Shockley",
+                      "pic": "empmissile.png",
+                    "range": 3500,
+                   "reload": 3,
+                    "sight": 0,
+                    "slope": 18,
+                    "speed": 0
+             }, {
                   "builder": true,
                      "cost": 1200,
                    "damage": 0,
@@ -1062,6 +1096,23 @@
                    "reload": 1.25,
                     "sight": 1105,
                     "speed": 2.75
+             }, {
+                  "builder": false,
+                     "cost": 500,
+                   "damage": 150,
+                     "desc": "Napalm Missile",
+                      "dps": 15,
+                      "gun": "weapon",
+                   "handle": "napalmmissile",
+                   "health": 1000,
+                 "longdesc": "The Inferno is a large AoE fire weapon. Its direct damage is modest, but the cloud of fire it creates lasts for a very long time.",
+                     "name": "Inferno",
+                      "pic": "napalmmissile.png",
+                    "range": 3500,
+                   "reload": 10,
+                    "sight": 0,
+                    "slope": 18,
+                    "speed": 0
              }, {
                   "builder": false,
                      "cost": 3000,
@@ -2584,6 +2635,23 @@
                    "reload": 0,
                     "sight": 300,
                     "speed": 10.7
+             }, {
+                  "builder": false,
+                     "cost": 400,
+                   "damage": 20,
+                     "desc": "Seismic Missile",
+                      "dps": 2,
+                      "gun": "seismic_weapon",
+                   "handle": "seismic",
+                   "health": 1000,
+                 "longdesc": "The Quake creates a powerful seismic shockwave that smooths a wide area of terrain, while causing minimal harm to units.",
+                     "name": "Quake",
+                      "pic": "seismic.png",
+                    "range": 6000,
+                   "reload": 10,
+                    "sight": 0,
+                    "slope": 18,
+                    "speed": 0
              } ],
     "title": "Units"
 }

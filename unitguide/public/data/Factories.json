@@ -235,7 +235,7 @@
                     "speed": 0
              }, {
                   "builder": true,
-                   "builds": [ "cornecro", "corak", "corstorm", "corthud", "cormak", "shieldfelon", "shieldarty", "corcrash", "corroach", "corclog", "core_spectre" ],
+                   "builds": [ "cornecro", "corak", "corstorm", "corthud", "cormak", "shieldfelon", "shieldarty", "corcrash", "corroach", "corclog", "core_spectre", "hovershotgun", "hoverskirm" ],
                      "cost": 600,
                    "damage": 0,
                      "desc": "Produces Tough Robots, Builds at 10 m/s",

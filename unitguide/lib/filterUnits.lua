@@ -84,8 +84,9 @@ function filterUnits()
 			-- what can I build?
 			s['builds'] = v['buildoptions']
 			table.insert(factories['data'], s)
-		-- statics don't jump
-		elseif setContains(s, 'speed') and s['speed'] == 0 then
+		-- statics don't jump and aren't silo missiles
+		elseif setContains(s, 'speed') and s['speed'] == 0 and
+			v['script'] ~= "cruisemissile.lua" then
 			table.insert(statics['data'], s)
 		-- must be a unit, I suppose
 		else
