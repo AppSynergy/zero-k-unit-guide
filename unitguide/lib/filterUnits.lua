@@ -54,14 +54,22 @@ function filterUnits()
 			if gun and setContains(gun, 'def') then
 				-- comply with lowerkeys!
 				local gunName = string.lower(gun['def'])
-				s['gun'] = gunName
-				local gunDamages = v['weapondefs'][gunName]['damage']
-				-- take the largest damage class - probably the right one!
-				s['damage'] = math.ceil(table.max(gunDamages))
-				s['range'] = v['weapondefs'][gunName]['range']
-				s['reload'] = v['weapondefs'][gunName]['reloadtime']
-				if setContains(s, 'damage') and setContains(s, 'reload') then
-					s['dps'] = math.floor(s['damage']/s['reload'])
+				-- a shield ain't no gun!
+				if gunName ~= "shield" and gunName ~= "cor_shield_small" then
+					s['gun'] = gunName
+					local gunDamages = v['weapondefs'][gunName]['damage']
+					-- does we fire multiple times?
+					local dMult = 1
+					if setContains(v['weapondefs'][gunName], 'burst') then
+						dMult = v['weapondefs'][gunName]['burst']
+					end
+					-- take the largest damage class - probably the right one!
+					s['damage'] = math.ceil(dMult*table.max(gunDamages))
+					s['range'] = v['weapondefs'][gunName]['range']
+					s['reload'] = v['weapondefs'][gunName]['reloadtime']
+					if setContains(s, 'damage') and setContains(s, 'reload') then
+						s['dps'] = math.floor(s['damage']/s['reload'])
+					end
 				end
 			end
 		end
