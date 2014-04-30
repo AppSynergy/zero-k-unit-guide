@@ -2,7 +2,11 @@
 	<button class="btn btn-primary"		
 		ng-click="unitSortCallback(key);"
 		ng-repeat="(key, title) in sortFields"
-	>{{ title }}</button>
+	><span ng-class="{
+		'isSortedUp': unitSort==key&&unitSeq,
+		'isSortedDown': unitSort==key&&!unitSeq
+		}" class="sort">{{ title }}</span>
+	</button>
 </p>
 
 <div class=" zk-unit well" ng-model="fac"

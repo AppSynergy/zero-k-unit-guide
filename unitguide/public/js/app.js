@@ -72,12 +72,15 @@ app.controller('MainCtrl', function($scope, $resource, $filter) {
 		// swap order if no other changes
 		if ($scope.unitSort == sortBy) $scope.unitSeq = !$scope.unitSeq;
 		$scope.unitSort = sortBy;
+		console.log(sortBy);
 	}
 	
 	// figure out a good width for the "strength indicator"
 	$scope.myWidth = function(stat,val) {
 		var max = $scope.stats[stat].max;
-		var perc = (val/max > 0.99) ? "100%" : Math.floor((100*val/max))+"%";
+		var min = $scope.stats[stat].min;
+		var calc = 100*Math.log(val)/Math.log(max);
+		var perc = (calc > 99) ? "100%" : Math.floor(calc)+"%";
 		return perc;
 	};
 

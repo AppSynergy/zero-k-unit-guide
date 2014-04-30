@@ -37,3 +37,11 @@ body .unitPic {
   float: left;
   padding: 0 10px 0 0;
 }
+/* line 31, ../../sass/src/unitguide.sass */
+body .btn .sort.isSortedUp:before {
+  content: "\25BC";
+}
+/* line 33, ../../sass/src/unitguide.sass */
+body .btn .sort.isSortedDown:before {
+  content: "\25B2";
+}
