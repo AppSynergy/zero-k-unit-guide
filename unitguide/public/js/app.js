@@ -2,6 +2,20 @@ var app = angular.module('unitguide', ['ngResource']);
 
 app.controller('MainCtrl', function($scope, $resource, $filter) {
 	
+	// these are the stats you can choose from and sort
+	$scope.unitStats = {
+		health:      {str:'Health',active:true},
+		cost:        {str:'Cost',active:true},
+		damage:      {str:'Damage',active:false},
+		dps:         {str:'DPS',active:true},
+		dpspcost:    {str:'DPS / 1000 Metal',active:true},
+		healthpcost: {str:'Health / 1000 Metal',active:true},
+		range:       {str:'Range',active:false},
+		speed:       {str:'Speed',active:false},
+		deathDmg:    {str:'Death Damage',active:false},
+	};
+	
+	// INITIALIZE
 	// fetch factories
 	$scope.factories = $resource('../data/Factories.json').get(function() {
 		// fetch units
@@ -13,7 +27,7 @@ app.controller('MainCtrl', function($scope, $resource, $filter) {
 		});	
 	});
 	
-	// choose a new factory
+	// choosing a new factory
 	$scope.selectFactory = function() {
 		var builds = $scope.selectedFactory.builds;
 		getFilterStats(builds);
@@ -40,7 +54,7 @@ app.controller('MainCtrl', function($scope, $resource, $filter) {
 		$scope.stats = stats;
 	}
 	
-	// used for filtering units list
+	// used for filtering units list for a specific factory
 	$scope.unitFilterByFac = function(units) {
 		return function(u) {
 			// return true if in the build list
@@ -49,32 +63,28 @@ app.controller('MainCtrl', function($scope, $resource, $filter) {
 		}
 	}
 	
-	// display detail for units
-	$scope.unitStats = {
-		health: 'Health',
-		cost:   'Cost',
-		damage: 'Damage',
-		dps:    'DPS',
-		dpspcost: 'DPS / 1000 Metal',
-		healthpcost: 'Health / 1000 Metal',
-		range:  'Range',
-		speed:  'Speed',
-	};
-	
-	// sort fields
-	$scope.sortFields = angular.copy($scope.unitStats);
-	$scope.sortFields['name'] = 'Name';
-	
 	// default sorting - alphabetical
 	$scope.unitSort = 'name';
 	$scope.unitSeq = false;
 	$scope.facSort = 'name';
 	
+	// updating the sort fields
+	$scope.updateSortFields = function() {
+		angular.forEach($scope.unitStats, function(v,k) {
+			if (v.active) $scope.sortFields[k] = v.str;
+			else delete $scope.sortFields[k];
+		});
+	};
+	
+	// instantiate the sort fields
+	$scope.sortFields = {};
+	$scope.updateSortFields();
+	
+	// sorting the sort fields
 	$scope.unitSortCallback = function(sortBy) {
 		// swap order if no other changes
 		if ($scope.unitSort == sortBy) $scope.unitSeq = !$scope.unitSeq;
 		$scope.unitSort = sortBy;
-		console.log(sortBy);
 	}
 	
 	// figure out a good width for the "strength indicator"

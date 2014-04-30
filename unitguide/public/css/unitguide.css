@@ -45,3 +45,7 @@ body .btn .sort.isSortedUp:before {
 body .btn .sort.isSortedDown:before {
   content: "\25B2";
 }
+/* line 35, ../../sass/src/unitguide.sass */
+body .selectStat {
+  margin: 10px;
+}
