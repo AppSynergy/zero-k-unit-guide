@@ -55,6 +55,8 @@ app.controller('MainCtrl', function($scope, $resource, $filter) {
 		cost:   'Cost',
 		damage: 'Damage',
 		dps:    'DPS',
+		dpspcost: 'DPS / 1000 Metal',
+		healthpcost: 'Health / 1000 Metal',
 		range:  'Range',
 		speed:  'Speed',
 	};

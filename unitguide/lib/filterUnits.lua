@@ -82,6 +82,15 @@ function filterUnits()
 			s['reload'] = 0
 		end
 		
+		-- 'per metal' cost seems to be revelant
+		if setContains(s, 'dps') then
+			-- 3dp good enough?
+			s['dpspcost'] = math.floor(1000*s['dps']/s['cost'])
+		else
+			s['dpspcost'] = 0
+		end
+		s['healthpcost'] = math.floor(1000*s['health']/s['cost'])
+
 		-- feature defs
 		if setContains(v, 'featuredefs') then
 			if setContains(v['featuredefs'], 'dead') then
