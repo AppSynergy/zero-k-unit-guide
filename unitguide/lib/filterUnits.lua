@@ -82,6 +82,14 @@ function filterUnits()
 			s['reload'] = 0
 		end
 		
+		-- feature defs
+		if setContains(v, 'featuredefs') then
+			if setContains(v['featuredefs'], 'dead') then
+				local dead = v['featuredefs']['dead']
+				s['deathDmg'] = dead['damage']
+			end
+		end
+		
 		-- forget about chickens
 		if string.find(v['description'], "Chicken") ~= nil
 			or string.find(v['unitname'], "chicken") ~= nil 
