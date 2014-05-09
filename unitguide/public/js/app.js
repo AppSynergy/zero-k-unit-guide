@@ -2,6 +2,16 @@ var app = angular.module('unitguide', ['ngResource']);
 
 app.controller('MainCtrl', function($scope, $resource, $filter) {
 	
+	$scope.page = function(v) {
+		$scope.selection = v;
+	}
+	$scope.selection = "fac";
+	$scope.items = [
+		{str:'Factory Mode',key:'fac'},
+		{str:'Compare Mode',key:'com'}
+	];
+	
+	
 	// these are the stats you can choose from and sort
 	$scope.unitStats = {
 		health:      {str:'Health',active:true},
@@ -20,10 +30,15 @@ app.controller('MainCtrl', function($scope, $resource, $filter) {
 	$scope.factories = $resource('../data/Factories.json').get(function() {
 		// fetch units
 		$scope.units = $resource('../data/Units.json').get(function() {
-			// default to... I dunno... Cloaky?
-			var fac = $scope.factories.data[10];
-			getFilterStats(fac.builds);
-			$scope.selectedFactory = fac;
+			// go to Factory mode
+			if (typeof $scope.selection != undefined) {
+				//if ($scope.selection.key == "fac") {
+					// default to... I dunno... Cloaky?
+					var fac = $scope.factories.data[10];
+					getFilterStats(fac.builds);
+					$scope.selectedFactory = fac;
+				//}
+			}
 		});	
 	});
 	
@@ -92,6 +107,8 @@ app.controller('MainCtrl', function($scope, $resource, $filter) {
 		var max = $scope.stats[stat].max;
 		var min = $scope.stats[stat].min;
 		var calc = 100*Math.log(val)/Math.log(max);
+		// completely arbitrary math..
+		calc = calc*2-120;
 		var perc = (calc > 99) ? "100%" : Math.floor(calc)+"%";
 		return perc;
 	};
