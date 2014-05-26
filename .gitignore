@@ -8,12 +8,11 @@ unitguide/node_modules
 unitguide/sass/.sass-cache
 
 # Unit pics
-unitguide/public/img/units/*
+#unitguide/public/img/units/*
 
 # Actual ZK project
 zk/
 Zero-K.info/
 unitguideOriginal
 
-#Something else entirely
-huntergatherer
+upspring
