@@ -2,17 +2,28 @@ app = angular.module('unitguide', ['ngResource'])
 
 app.controller('MainCtrl', ($scope, $resource, $filter) ->
 	
+	# ----------------------------
+	# App Paging
+	# ----------------------------
+	
+	# Select a new page
 	$scope.pageSelect = (v) ->
 		$scope.selection = v
-
+	
+	# Default page
 	$scope.selectedPage = "fac";
 	
+	# All the pages
 	$scope.pages = [
 		{str:'Factory Mode',key:'fac'},
 		{str:'Compare Mode',key:'com'}
 	]
 		
-	# these are the stats you can choose from and sort
+	# ----------------------------
+	# Unit Stats
+	# str:  label for stat
+	# active: default on/off
+	# ----------------------------
 	$scope.unitStats = {
 		health:      {str:'Health',active:true},
 		cost:        {str:'Cost',active:true},
@@ -25,17 +36,22 @@ app.controller('MainCtrl', ($scope, $resource, $filter) ->
 		deathDmg:    {str:'Death Damage',active:false},
 	}
 	
-	# INITIALIZE
-	# fetch factories
-	$scope.factories = $resource('../data/Factories.json').get () ->
-		# fetch units
-		$scope.units = $resource('../data/Units.json').get () ->
+	# ----------------------------
+	# Fetch json data onload
+	# ----------------------------
+	
+	$scope.factories = $resource('../data/Factories.json').get () -> # fetch factories		
+		$scope.units = $resource('../data/Units.json').get () -> # then fetch units
 			# go to Factory mode
-			if typeof $scope.selection != undefined
+			if typeof $scope.selectedPage != undefined
 				# default to... I dunno... Cloaky?
 				fac = $scope.factories.data[10]
 				getFilterStats fac.builds
 				$scope.selectedFactory = fac
+	
+	# ----------------------------
+	# Factory page logic
+	# ----------------------------
 	
 	# choosing a new factory
 	$scope.selectFactory = () ->

@@ -59,7 +59,7 @@ app.controller('MainCtrl', function($scope, $resource, $filter) {
   $scope.factories = $resource('../data/Factories.json').get(function() {
     return $scope.units = $resource('../data/Units.json').get(function() {
       var fac;
-      if (typeof $scope.selection !== void 0) {
+      if (typeof $scope.selectedPage !== void 0) {
         fac = $scope.factories.data[10];
         getFilterStats(fac.builds);
         return $scope.selectedFactory = fac;
