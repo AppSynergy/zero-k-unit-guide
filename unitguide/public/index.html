@@ -28,9 +28,9 @@
 			
 			<div class="animate-switch" ng-switch-when="fac">
 				<h2> Choose Factory:
-				<select class="pickFac" ng-model="selectedFactory"
+				<select class="pickFac" ng-model="facPage.selectedFactory"
 					ng-options="fac.name for fac in factories.data | orderBy:facSort:facSeq"
-					ng-change="selectFactory();"></select>
+					ng-change="facPage.selectFactory();"></select>
 				</h2>
 				<p><em>{{ selectedFactory.desc }}</em></p>
 				<p>{{ selectedFactory.longdesc }}</p>

@@ -47,16 +47,66 @@ app.controller('MainCtrl', ($scope, $resource, $filter) ->
 				# default to... I dunno... Cloaky?
 				fac = $scope.factories.data[10]
 				getFilterStats fac.builds
-				$scope.selectedFactory = fac
+				$scope.facPage.selectedFactory = fac
 	
 	# ----------------------------
 	# Factory page logic
 	# ----------------------------
+	$scope.facPage = {}
+	
+	# default sorting - alphabetical
+	$scope.facPage.unitSort = 'name'
+	$scope.facPage.unitSeq = false
+	$scope.facPage.facSort = 'name'
 	
 	# choosing a new factory
-	$scope.selectFactory = () ->
-		builds = $scope.selectedFactory.builds
+	$scope.facPage.selectFactory = () ->
+		builds = $scope.facPage.selectedFactory.builds
 		getFilterStats builds
+
+	
+	# used for filtering units list for a specific factory
+	$scope.facPage.unitFilterByFac = (units) ->
+		return (u) ->
+			# return true if in the build list
+			makes = units.indexOf u.handle
+			return makes > -1
+	
+	# updating the sort fields
+	$scope.facPage.updateSortFields = () ->
+		angular.forEach($scope.unitStats, (v,k) ->
+			if (v.active)
+				$scope.facPage.sortFields[k] = v.str
+			else
+				delete $scope.facPage.sortFields[k]
+		)
+	
+	# instantiate the sort fields
+	$scope.facPage.sortFields = {}
+	$scope.facPage.updateSortFields()
+	
+	# sorting the sort fields
+	$scope.facPage.unitSortCallback = (sortBy) ->
+		# swap order if no other changes
+		if ($scope.facPage.unitSort == sortBy)
+			$scope.facPage.unitSeq = !$scope.facPage.unitSeq
+		$scope.facPage.unitSort = sortBy
+	
+	
+	# ----------------------------
+	# Other stuff
+	# ----------------------------
+	
+	# figure out a good width for the "strength indicator"
+	$scope.myWidth = (stat,val) ->
+		max = $scope.stats[stat].max
+		min = $scope.stats[stat].min
+		calc = 100*Math.log(val)/Math.log(max)
+		# completely arbitrary math..
+		calc = calc*2-120
+		perc = if calc > 99 then "100%" else Math.floor(calc)+"%"
+		return perc
+	
 	
 	# find the details of current units
 	getFilterStats = (builds) ->
@@ -65,8 +115,7 @@ app.controller('MainCtrl', ($scope, $resource, $filter) ->
 		units = []
 		angular.forEach($scope.units.data, (u) ->
 			makes = builds.indexOf u.handle
-			if makes > -1
-				units.push u
+			if makes > -1 then units.push u
 		)
 		# loop through collecting stats
 		stats = {}
@@ -80,49 +129,8 @@ app.controller('MainCtrl', ($scope, $resource, $filter) ->
 		)
 		
 		$scope.stats = stats
-	
-	# used for filtering units list for a specific factory
-	$scope.unitFilterByFac = (units) ->
-		return (u) ->
-			# return true if in the build list
-			makes = units.indexOf u.handle
-			return makes > -1
-	
-	# default sorting - alphabetical
-	$scope.unitSort = 'name'
-	$scope.unitSeq = false
-	$scope.facSort = 'name'
-	
-	# updating the sort fields
-	$scope.updateSortFields = () ->
-		angular.forEach($scope.unitStats, (v,k) ->
-			if (v.active)
-				$scope.sortFields[k] = v.str
-			else
-				delete $scope.sortFields[k]
-		)
-	
-	# instantiate the sort fields
-	$scope.sortFields = {}
-	$scope.updateSortFields()
-	
-	# sorting the sort fields
-	$scope.unitSortCallback = (sortBy) ->
-		# swap order if no other changes
-		if ($scope.unitSort == sortBy)
-			$scope.unitSeq = !$scope.unitSeq
-		$scope.unitSort = sortBy
-	
-	# figure out a good width for the "strength indicator"
-	$scope.myWidth = (stat,val) ->
-		max = $scope.stats[stat].max
-		min = $scope.stats[stat].min
-		calc = 100*Math.log(val)/Math.log(max)
-		# completely arbitrary math..
-		calc = calc*2-120
-		perc = (calc > 99) ? "100%" : Math.floor(calc)+"%"
-		return perc
 		
+	console.log $scope
 )
 	
 	

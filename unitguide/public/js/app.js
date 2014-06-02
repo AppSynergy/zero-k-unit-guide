@@ -62,14 +62,51 @@ app.controller('MainCtrl', function($scope, $resource, $filter) {
       if (typeof $scope.selectedPage !== void 0) {
         fac = $scope.factories.data[10];
         getFilterStats(fac.builds);
-        return $scope.selectedFactory = fac;
+        return $scope.facPage.selectedFactory = fac;
       }
     });
   });
-  $scope.selectFactory = function() {
+  $scope.facPage = {};
+  $scope.facPage.unitSort = 'name';
+  $scope.facPage.unitSeq = false;
+  $scope.facPage.facSort = 'name';
+  $scope.facPage.selectFactory = function() {
     var builds;
-    builds = $scope.selectedFactory.builds;
+    builds = $scope.facPage.selectedFactory.builds;
     return getFilterStats(builds);
+  };
+  $scope.facPage.unitFilterByFac = function(units) {
+    return function(u) {
+      var makes;
+      makes = units.indexOf(u.handle);
+      return makes > -1;
+    };
+  };
+  $scope.facPage.updateSortFields = function() {
+    return angular.forEach($scope.unitStats, function(v, k) {
+      if (v.active) {
+        return $scope.facPage.sortFields[k] = v.str;
+      } else {
+        return delete $scope.facPage.sortFields[k];
+      }
+    });
+  };
+  $scope.facPage.sortFields = {};
+  $scope.facPage.updateSortFields();
+  $scope.facPage.unitSortCallback = function(sortBy) {
+    if ($scope.facPage.unitSort === sortBy) {
+      $scope.facPage.unitSeq = !$scope.facPage.unitSeq;
+    }
+    return $scope.facPage.unitSort = sortBy;
+  };
+  $scope.myWidth = function(stat, val) {
+    var calc, max, min, perc;
+    max = $scope.stats[stat].max;
+    min = $scope.stats[stat].min;
+    calc = 100 * Math.log(val) / Math.log(max);
+    calc = calc * 2 - 120;
+    perc = calc > 99 ? "100%" : Math.floor(calc) + "%";
+    return perc;
   };
   getFilterStats = function(builds) {
     var stats, units;
@@ -94,42 +131,5 @@ app.controller('MainCtrl', function($scope, $resource, $filter) {
     });
     return $scope.stats = stats;
   };
-  $scope.unitFilterByFac = function(units) {
-    return function(u) {
-      var makes;
-      makes = units.indexOf(u.handle);
-      return makes > -1;
-    };
-  };
-  $scope.unitSort = 'name';
-  $scope.unitSeq = false;
-  $scope.facSort = 'name';
-  $scope.updateSortFields = function() {
-    return angular.forEach($scope.unitStats, function(v, k) {
-      if (v.active) {
-        return $scope.sortFields[k] = v.str;
-      } else {
-        return delete $scope.sortFields[k];
-      }
-    });
-  };
-  $scope.sortFields = {};
-  $scope.updateSortFields();
-  $scope.unitSortCallback = function(sortBy) {
-    if ($scope.unitSort === sortBy) {
-      $scope.unitSeq = !$scope.unitSeq;
-    }
-    return $scope.unitSort = sortBy;
-  };
-  return $scope.myWidth = function(stat, val) {
-    var calc, max, min, perc, _ref;
-    max = $scope.stats[stat].max;
-    min = $scope.stats[stat].min;
-    calc = 100 * Math.log(val) / Math.log(max);
-    calc = calc * 2 - 120;
-    perc = (_ref = calc > 99) != null ? _ref : {
-      "100%": Math.floor(calc) + "%"
-    };
-    return perc;
-  };
+  return console.log($scope);
 });

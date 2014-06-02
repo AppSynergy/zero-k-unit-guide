@@ -4,28 +4,28 @@
     type="checkbox"
     value="{{ stat.active }}"
 	ng-model="stat.active"
-	ng-click="updateSortFields()"
+	ng-click="facPage.updateSortFields()"
   > {{stat.str}}
 </label></p>
 
 
 <p>Sort units by: 
 	<button class="btn btn-primary"		
-		ng-click="unitSortCallback(key);"
-		ng-repeat="(key, title) in sortFields"
+		ng-click="facPage.unitSortCallback(key);"
+		ng-repeat="(key, title) in facPage.sortFields"
 	><span ng-class="{
-		'isSortedUp': unitSort==key&&unitSeq,
-		'isSortedDown': unitSort==key&&!unitSeq
+		'isSortedUp': facPage.unitSort==key&&facPage.unitSeq,
+		'isSortedDown': facPage.unitSort==key&&!facPage.unitSeq
 		}" class="sort">{{ title }}</span>
 	</button>
 </p>
 
 <div class=" zk-unit well" ng-model="fac"
-	ng-repeat="u in units.data | filter:unitFilterByFac(selectedFactory.builds) | orderBy:unitSort:unitSeq">
+	ng-repeat="u in units.data | filter:facPage.unitFilterByFac(facPage.selectedFactory.builds) | orderBy:facPage.unitSort:facPage.unitSeq">
 	<div class="row">
 		
 		<div class="col-xs-3">
-			<div ng-repeat="(key, title) in sortFields">	
+			<div ng-repeat="(key, title) in facPage.sortFields">	
 				<div class="progress">
 					<span class="title">{{ title }}</span>
 					<span class="badge">{{ u[key] }}</span>
