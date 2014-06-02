@@ -2,12 +2,12 @@ app = angular.module('unitguide', ['ngResource'])
 
 app.controller('MainCtrl', ($scope, $resource, $filter) ->
 	
-	$scope.page = (v) ->
+	$scope.pageSelect = (v) ->
 		$scope.selection = v
 
-	$scope.selection = "fac";
+	$scope.selectedPage = "fac";
 	
-	$scope.items = [
+	$scope.pages = [
 		{str:'Factory Mode',key:'fac'},
 		{str:'Compare Mode',key:'com'}
 	]

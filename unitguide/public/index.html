@@ -16,15 +16,15 @@
 		<nav class="navbar" role="navigation">
 			<div class="container-fluid">
 				<ul class="nav navbar-nav">
-				  <li ng-repeat="i in items">
-					<a ng-click="page(i.key);" href="#">{{ i.str }}</a>
+				  <li ng-repeat="p in pages">
+					<a ng-click="pageSelect(p.key);" href="#">{{ p.str }}</a>
 				  </li>
 				</ul>
 			</div>
 		</nav>
 		
 		<div class="animate-switch-container"
-			ng-switch on="selection">
+			ng-switch on="selectedPage">
 			
 			<div class="animate-switch" ng-switch-when="fac">
 				<h2> Choose Factory:
