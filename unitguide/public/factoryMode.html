@@ -1,7 +1,7 @@
 
 <h2> Choose Factory:
 <select class="pickFac" ng-model="facPage.selectedFactory"
-	ng-options="fac.name for fac in factories.data | orderBy:facSort:facSeq"
+	ng-options="fac.name for fac in factories.data | orderBy:facPage.facSort:facPage.facSeq"
 	ng-change="facPage.selectFactory();"></select>
 </h2>
 <p><em>{{ facPage.selectedFactory.desc }}</em></p>
@@ -39,7 +39,7 @@
 					<span class="title">{{ title }}</span>
 					<span class="badge">{{ u[key] }}</span>
 					<div class="progress-bar" role="progressbar"
-						ng-style="{width: myWidth(key,u[key])}">
+						ng-style="{width: facPage.myWidth(key,u[key])}">
 					</div>
 				</div>
 			</div>

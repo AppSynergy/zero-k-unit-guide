@@ -4,7 +4,7 @@ var app;
 app = angular.module('unitguide', ['ngResource']);
 
 app.controller('MainCtrl', function($scope, $resource, $filter) {
-  var FacMode, getFilterStats;
+  var FacMode;
   $scope.modeSelect = function(v) {
     return $scope.selectedMode = v;
   };
@@ -61,7 +61,7 @@ app.controller('MainCtrl', function($scope, $resource, $filter) {
       var fac;
       if (typeof $scope.selectedMode !== void 0) {
         fac = $scope.factories.data[10];
-        getFilterStats(fac.builds);
+        $scope.facPage.getFilterStats(fac.builds);
         return $scope.facPage.selectedFactory = fac;
       }
     });
@@ -72,18 +72,20 @@ app.controller('MainCtrl', function($scope, $resource, $filter) {
 
     FacMode.prototype.selectedFactory = {};
 
+    FacMode.prototype.stats = {};
+
+    FacMode.prototype.sortFields = {};
+
     FacMode.prototype.unitSort = 'name';
 
     FacMode.prototype.facSort = 'name';
 
     FacMode.prototype.unitSeq = false;
 
-    FacMode.prototype.sortFields = {};
-
     FacMode.prototype.selectFactory = function() {
       var builds;
       builds = this.selectedFactory.builds;
-      return getFilterStats(builds);
+      return this.getFilterStats(builds);
     };
 
     FacMode.prototype.unitFilterByFac = function(units) {
@@ -111,41 +113,45 @@ app.controller('MainCtrl', function($scope, $resource, $filter) {
       return this.unitSort = sortBy;
     };
 
+    FacMode.prototype.getFilterStats = function(builds) {
+      var stats, units;
+      units = [];
+      angular.forEach($scope.units.data, function(u) {
+        var makes;
+        makes = builds.indexOf(u.handle);
+        if (makes > -1) {
+          return units.push(u);
+        }
+      });
+      stats = {};
+      angular.forEach($scope.unitStats, function(t, k) {
+        stats[k] = {
+          'max': 0,
+          'vals': []
+        };
+        angular.forEach(units, function(u) {
+          return stats[k].vals.push(u[k]);
+        });
+        return stats[k].max = Math.max.apply(Math, stats[k].vals);
+      });
+      return this.stats = angular.copy(stats);
+    };
+
+    FacMode.prototype.myWidth = function(stat, val) {
+      var calc, max, min, perc;
+      max = this.stats[stat].max;
+      min = this.stats[stat].min;
+      calc = 100 * Math.log(val) / Math.log(max);
+      calc = calc * 2 - 120;
+      perc = calc > 99 ? "100%" : Math.floor(calc) + "%";
+      return perc;
+    };
+
     return FacMode;
 
   })();
   $scope.facPage = new FacMode;
   $scope.facPage.updateSortFields();
-  $scope.myWidth = function(stat, val) {
-    var calc, max, min, perc;
-    max = $scope.stats[stat].max;
-    min = $scope.stats[stat].min;
-    calc = 100 * Math.log(val) / Math.log(max);
-    calc = calc * 2 - 120;
-    perc = calc > 99 ? "100%" : Math.floor(calc) + "%";
-    return perc;
-  };
-  return getFilterStats = function(builds) {
-    var stats, units;
-    units = [];
-    angular.forEach($scope.units.data, function(u) {
-      var makes;
-      makes = builds.indexOf(u.handle);
-      if (makes > -1) {
-        return units.push(u);
-      }
-    });
-    stats = {};
-    angular.forEach($scope.unitStats, function(t, k) {
-      stats[k] = {
-        'max': 0,
-        'vals': []
-      };
-      angular.forEach(units, function(u) {
-        return stats[k].vals.push(u[k]);
-      });
-      return stats[k].max = Math.max.apply(Math, stats[k].vals);
-    });
-    return $scope.stats = stats;
-  };
+  console.log($scope);
+  return true;
 });
