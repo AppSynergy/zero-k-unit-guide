@@ -10,9 +10,9 @@ unitguide/sass/.sass-cache
 # Unit pics
 #unitguide/public/img/units/*
 
-# Actual ZK project
+# Actual ZK projects
 zk/
 Zero-K.info/
 unitguideOriginal
-
 upspring
+springweblobby-read-only
