@@ -67,8 +67,13 @@ function filterUnits()
 					s['damage'] = math.ceil(dMult*table.max(gunDamages))
 					s['range'] = v['weapondefs'][gunName]['range']
 					s['reload'] = v['weapondefs'][gunName]['reloadtime']
-					if setContains(s, 'damage') and setContains(s, 'reload') then
-						s['dps'] = math.floor(s['damage']/s['reload'])
+					if setContains(s, 'damage') then
+						if setContains(s, 'reload') then
+							s['dps'] = math.floor(s['damage']/s['reload'])
+						else
+							-- stuff like roach has no reload
+							s['dps'] = s['damage']
+						end
 					end
 				end
 			end

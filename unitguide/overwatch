@@ -1,0 +1,6 @@
+#! /usr/bin/env bash
+nodemon &
+# update our CoffeeScript
+coffee -b -o public/js/ -cw coffee/ &
+# update our SASS
+compass watch sass

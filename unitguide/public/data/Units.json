@@ -1178,19 +1178,17 @@
                        "speed": 2.2
              }, {
                         "cost": 160,
-                      "damage": 0,
+                      "damage": 1200,
                         "desc": "Crawling Bomb",
-                         "dps": 0,
-                    "dpspcost": 0,
-                         "gun": "unarmed",
+                         "dps": 1200,
+                    "dpspcost": 7500,
+                         "gun": "corroach_death",
                       "handle": "corroach",
                       "health": 60,
                  "healthpcost": 375,
                     "longdesc": "This fast-moving suicide unit is very good against massed units, particularly assault tanks. It features a cloaking device which is automatically activated once the unit stands still, effectifely turning it into a mine. Chain explodes terribly, so best not to mass it. Counter with defenders and missile trucks, or single cheap units to set off a premature detonation.",
                         "name": "Roach",
                          "pic": "corroach.png",
-                       "range": 0,
-                      "reload": 0,
                        "sight": 240,
                        "slope": 36,
                        "speed": 4
