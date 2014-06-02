@@ -43,7 +43,7 @@ app.controller('MainCtrl', ($scope, $resource, $filter) ->
 	$scope.factories = $resource('../data/Factories.json').get () -> # fetch factories		
 		$scope.units = $resource('../data/Units.json').get () -> # then fetch units
 			# go to Factory mode
-			if typeof $scope.selectedPage != undefined
+			if typeof $scope.selectedMode != undefined
 				# default to... I dunno... Cloaky?
 				fac = $scope.factories.data[10]
 				getFilterStats fac.builds
@@ -52,49 +52,59 @@ app.controller('MainCtrl', ($scope, $resource, $filter) ->
 	# ----------------------------
 	# Factory page logic
 	# ----------------------------
-	$scope.facPage = {}
 	
-	# default sorting - alphabetical
-	$scope.facPage.unitSort = 'name'
-	$scope.facPage.unitSeq = false
-	$scope.facPage.facSort = 'name'
-	
-	# choosing a new factory
-	$scope.facPage.selectFactory = () ->
-		builds = $scope.facPage.selectedFactory.builds
-		getFilterStats builds
+	class FacMode	
+		# which factory are we viewing
+		selectedFactory: {}
+		# default sorting - alphabetical
+		unitSort: 'name'
+		facSort: 'name'
+		# asc vs desc
+		unitSeq: false
+		# populate later
+		sortFields: {}
+		
+		# @TODO: something wrong here
+		#constructor: () ->
+		#	@updateSortFields()
+		
+		# choosing a new factory
+		selectFactory: () ->
+			builds = @selectedFactory.builds
+			getFilterStats builds
 
+		# used for filtering units list for a specific factory
+		unitFilterByFac: (units) ->
+			return (u) ->
+				# return true if in the build list
+				makes = units.indexOf u.handle
+				return makes > -1
 	
-	# used for filtering units list for a specific factory
-	$scope.facPage.unitFilterByFac = (units) ->
-		return (u) ->
-			# return true if in the build list
-			makes = units.indexOf u.handle
-			return makes > -1
+		# updating the sort fields
+		updateSortFields: () ->
+			angular.forEach($scope.unitStats, (v,k) ->
+				if (v.active)
+					# @TODO: something wrong here
+					#@sortFields[k] = v.str
+					$scope.facPage.sortFields[k] = v.str
+				else
+					#delete @sortFields[k]
+					delete $scope.facPage.sortFields[k]
+			)
+			
+		# sorting the sort fields
+		unitSortCallback: (sortBy) ->
+			# swap order if no other changes
+			if (@unitSort == sortBy)
+				@unitSeq = !@unitSeq
+			@unitSort = sortBy
 	
-	# updating the sort fields
-	$scope.facPage.updateSortFields = () ->
-		angular.forEach($scope.unitStats, (v,k) ->
-			if (v.active)
-				$scope.facPage.sortFields[k] = v.str
-			else
-				delete $scope.facPage.sortFields[k]
-		)
-	
-	# instantiate the sort fields
-	$scope.facPage.sortFields = {}
+	# instantiate the factory page, and set initial sort fields
+	$scope.facPage = new FacMode
 	$scope.facPage.updateSortFields()
 	
-	# sorting the sort fields
-	$scope.facPage.unitSortCallback = (sortBy) ->
-		# swap order if no other changes
-		if ($scope.facPage.unitSort == sortBy)
-			$scope.facPage.unitSeq = !$scope.facPage.unitSeq
-		$scope.facPage.unitSort = sortBy
-	
-	
 	# ----------------------------
-	# Other stuff
+	# Other (generally messy) stuff
 	# ----------------------------
 	
 	# figure out a good width for the "strength indicator"
@@ -130,7 +140,6 @@ app.controller('MainCtrl', ($scope, $resource, $filter) ->
 		
 		$scope.stats = stats
 		
-	console.log $scope
 )
 	
 	

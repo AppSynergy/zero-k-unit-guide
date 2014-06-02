@@ -4,7 +4,7 @@ var app;
 app = angular.module('unitguide', ['ngResource']);
 
 app.controller('MainCtrl', function($scope, $resource, $filter) {
-  var getFilterStats;
+  var FacMode, getFilterStats;
   $scope.modeSelect = function(v) {
     return $scope.selectedMode = v;
   };
@@ -59,46 +59,63 @@ app.controller('MainCtrl', function($scope, $resource, $filter) {
   $scope.factories = $resource('../data/Factories.json').get(function() {
     return $scope.units = $resource('../data/Units.json').get(function() {
       var fac;
-      if (typeof $scope.selectedPage !== void 0) {
+      if (typeof $scope.selectedMode !== void 0) {
         fac = $scope.factories.data[10];
         getFilterStats(fac.builds);
         return $scope.facPage.selectedFactory = fac;
       }
     });
   });
-  $scope.facPage = {};
-  $scope.facPage.unitSort = 'name';
-  $scope.facPage.unitSeq = false;
-  $scope.facPage.facSort = 'name';
-  $scope.facPage.selectFactory = function() {
-    var builds;
-    builds = $scope.facPage.selectedFactory.builds;
-    return getFilterStats(builds);
-  };
-  $scope.facPage.unitFilterByFac = function(units) {
-    return function(u) {
-      var makes;
-      makes = units.indexOf(u.handle);
-      return makes > -1;
+  FacMode = (function() {
+
+    function FacMode() {}
+
+    FacMode.prototype.selectedFactory = {};
+
+    FacMode.prototype.unitSort = 'name';
+
+    FacMode.prototype.facSort = 'name';
+
+    FacMode.prototype.unitSeq = false;
+
+    FacMode.prototype.sortFields = {};
+
+    FacMode.prototype.selectFactory = function() {
+      var builds;
+      builds = this.selectedFactory.builds;
+      return getFilterStats(builds);
     };
-  };
-  $scope.facPage.updateSortFields = function() {
-    return angular.forEach($scope.unitStats, function(v, k) {
-      if (v.active) {
-        return $scope.facPage.sortFields[k] = v.str;
-      } else {
-        return delete $scope.facPage.sortFields[k];
+
+    FacMode.prototype.unitFilterByFac = function(units) {
+      return function(u) {
+        var makes;
+        makes = units.indexOf(u.handle);
+        return makes > -1;
+      };
+    };
+
+    FacMode.prototype.updateSortFields = function() {
+      return angular.forEach($scope.unitStats, function(v, k) {
+        if (v.active) {
+          return $scope.facPage.sortFields[k] = v.str;
+        } else {
+          return delete $scope.facPage.sortFields[k];
+        }
+      });
+    };
+
+    FacMode.prototype.unitSortCallback = function(sortBy) {
+      if (this.unitSort === sortBy) {
+        this.unitSeq = !this.unitSeq;
       }
-    });
-  };
-  $scope.facPage.sortFields = {};
+      return this.unitSort = sortBy;
+    };
+
+    return FacMode;
+
+  })();
+  $scope.facPage = new FacMode;
   $scope.facPage.updateSortFields();
-  $scope.facPage.unitSortCallback = function(sortBy) {
-    if ($scope.facPage.unitSort === sortBy) {
-      $scope.facPage.unitSeq = !$scope.facPage.unitSeq;
-    }
-    return $scope.facPage.unitSort = sortBy;
-  };
   $scope.myWidth = function(stat, val) {
     var calc, max, min, perc;
     max = $scope.stats[stat].max;
@@ -108,7 +125,7 @@ app.controller('MainCtrl', function($scope, $resource, $filter) {
     perc = calc > 99 ? "100%" : Math.floor(calc) + "%";
     return perc;
   };
-  getFilterStats = function(builds) {
+  return getFilterStats = function(builds) {
     var stats, units;
     units = [];
     angular.forEach($scope.units.data, function(u) {
@@ -131,5 +148,4 @@ app.controller('MainCtrl', function($scope, $resource, $filter) {
     });
     return $scope.stats = stats;
   };
-  return console.log($scope);
 });
