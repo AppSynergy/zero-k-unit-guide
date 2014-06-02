@@ -16,30 +16,22 @@
 		<nav class="navbar" role="navigation">
 			<div class="container-fluid">
 				<ul class="nav navbar-nav">
-				  <li ng-repeat="p in pages">
-					<a ng-click="pageSelect(p.key);" href="#">{{ p.str }}</a>
+				  <li ng-repeat="m in modes">
+					<a ng-click="modeSelect(m.key);" href="#">{{ m.str }}</a>
 				  </li>
 				</ul>
 			</div>
 		</nav>
 		
 		<div class="animate-switch-container"
-			ng-switch on="selectedPage">
+			ng-switch on="selectedMode">
 			
 			<div class="animate-switch" ng-switch-when="fac">
-				<h2> Choose Factory:
-				<select class="pickFac" ng-model="facPage.selectedFactory"
-					ng-options="fac.name for fac in factories.data | orderBy:facSort:facSeq"
-					ng-change="facPage.selectFactory();"></select>
-				</h2>
-				<p><em>{{ selectedFactory.desc }}</em></p>
-				<p>{{ selectedFactory.longdesc }}</p>
-				<hr />
-				<div ng-include="'unitList.html'"></div>
+				<div ng-include="'factoryMode.html'"></div>
 			</div>
 			
 			<div class="animate-switch" ng-switch-when="com">
-				<div ng-include="'unitList.html'"></div>
+				<div ng-include="'compareMode.html'"></div>
 			</div>
 			
 			<div class="animate-switch" ng-switch-default>
@@ -47,7 +39,6 @@
 			</div>
 			
 		</div>
-				
 		
 	</div>
 </body>

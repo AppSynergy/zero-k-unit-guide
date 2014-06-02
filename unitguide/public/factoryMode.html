@@ -1,4 +1,13 @@
 
+<h2> Choose Factory:
+<select class="pickFac" ng-model="facPage.selectedFactory"
+	ng-options="fac.name for fac in factories.data | orderBy:facSort:facSeq"
+	ng-change="facPage.selectFactory();"></select>
+</h2>
+<p><em>{{ facPage.selectedFactory.desc }}</em></p>
+<p>{{ facPage.selectedFactory.longdesc }}</p>
+<hr />
+
 <p>Select stats: <label class="selectStat" ng-repeat="stat in unitStats">
   <input
     type="checkbox"

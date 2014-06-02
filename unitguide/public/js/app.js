@@ -5,11 +5,11 @@ app = angular.module('unitguide', ['ngResource']);
 
 app.controller('MainCtrl', function($scope, $resource, $filter) {
   var getFilterStats;
-  $scope.pageSelect = function(v) {
-    return $scope.selection = v;
+  $scope.modeSelect = function(v) {
+    return $scope.selectedMode = v;
   };
-  $scope.selectedPage = "fac";
-  $scope.pages = [
+  $scope.selectedMode = "fac";
+  $scope.modes = [
     {
       str: 'Factory Mode',
       key: 'fac'

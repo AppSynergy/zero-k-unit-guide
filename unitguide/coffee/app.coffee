@@ -7,14 +7,14 @@ app.controller('MainCtrl', ($scope, $resource, $filter) ->
 	# ----------------------------
 	
 	# Select a new page
-	$scope.pageSelect = (v) ->
-		$scope.selection = v
+	$scope.modeSelect = (v) ->
+		$scope.selectedMode = v
 	
 	# Default page
-	$scope.selectedPage = "fac";
+	$scope.selectedMode = "fac";
 	
 	# All the pages
-	$scope.pages = [
+	$scope.modes = [
 		{str:'Factory Mode',key:'fac'},
 		{str:'Compare Mode',key:'com'}
 	]
