@@ -26,7 +26,7 @@ app.controller('MainCtrl', ($scope, $resource, $filter) ->
 	# ----------------------------
 	$scope.dataSource = {}
 	
-	$scope.dataSource.unitStats = {
+	$scope.dataSource.statDefs = {
 		health:      {str:'Health',active:true},
 		cost:        {str:'Cost',active:true},
 		damage:      {str:'Damage',active:false},
@@ -58,6 +58,7 @@ app.controller('MainCtrl', ($scope, $resource, $filter) ->
 		selectedFactory: {}
 		# stats of all the units in that factory
 		stats: {}
+		statDefs: {}
 		# visible (sortable) stats
 		sortFields: {}
 		# default sorting - alphabetical
@@ -66,8 +67,9 @@ app.controller('MainCtrl', ($scope, $resource, $filter) ->
 		# asc vs desc
 		unitSeq: false
 		
-		# @TODO: something wrong here
-		constructor: () ->
+		# setup stat definitions & initial sort fields
+		constructor: () ->		
+			@statDefs = $scope.dataSource.statDefs
 			@updateSortFields()
 		
 		# choosing a new factory
@@ -84,14 +86,16 @@ app.controller('MainCtrl', ($scope, $resource, $filter) ->
 	
 		# updating the sort fields
 		updateSortFields: () =>
-			angular.forEach($scope.dataSource.unitStats, (obj,k) =>
+			angular.forEach(@statDefs, (obj,k) =>
 				if obj.active
 					# @TODO: something wrong here
 					@sortFields[k] = obj.str
 				else
 					delete @sortFields[k]
-				console.log [obj, obj.active, k, @sortFields[k]]
+				#console.log [obj, obj.active, k, @sortFields[k]]
 			)
+			#$scope.$digest()
+			console.log @sortFields
 			
 		# sorting the sort fields
 		unitSortCallback: (sortBy) ->
@@ -110,7 +114,7 @@ app.controller('MainCtrl', ($scope, $resource, $filter) ->
 			)
 			# loop through collecting stats
 			stats = {}
-			angular.forEach($scope.dataSource.unitStats, (t,k) ->
+			angular.forEach(@statDefs, (t,k) ->
 				stats[k] = {'max': 0, 'vals':[]}
 				angular.forEach(units, (u) ->
 					stats[k].vals.push u[k]

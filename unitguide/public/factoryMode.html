@@ -8,7 +8,7 @@
 <p>{{ facPage.selectedFactory.longdesc }}</p>
 <hr />
 
-<p>Select stats: <label class="selectStat" ng-repeat="stat in dataSource.unitStats">
+<p>Select stats: <label class="selectStat" ng-repeat="stat in dataSource.statDefs">
   <input
     type="checkbox"
     value="{{ stat.active }}"

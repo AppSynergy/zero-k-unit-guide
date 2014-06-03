@@ -20,7 +20,7 @@ app.controller('MainCtrl', function($scope, $resource, $filter) {
     }
   ];
   $scope.dataSource = {};
-  $scope.dataSource.unitStats = {
+  $scope.dataSource.statDefs = {
     health: {
       str: 'Health',
       active: true
@@ -74,6 +74,8 @@ app.controller('MainCtrl', function($scope, $resource, $filter) {
 
     FacMode.prototype.stats = {};
 
+    FacMode.prototype.statDefs = {};
+
     FacMode.prototype.sortFields = {};
 
     FacMode.prototype.unitSort = 'name';
@@ -84,6 +86,7 @@ app.controller('MainCtrl', function($scope, $resource, $filter) {
 
     function FacMode() {
       this.updateSortFields = __bind(this.updateSortFields, this);
+      this.statDefs = $scope.dataSource.statDefs;
       this.updateSortFields();
     }
 
@@ -103,14 +106,14 @@ app.controller('MainCtrl', function($scope, $resource, $filter) {
 
     FacMode.prototype.updateSortFields = function() {
       var _this = this;
-      return angular.forEach($scope.dataSource.unitStats, function(obj, k) {
+      angular.forEach(this.statDefs, function(obj, k) {
         if (obj.active) {
-          _this.sortFields[k] = obj.str;
+          return _this.sortFields[k] = obj.str;
         } else {
-          delete _this.sortFields[k];
+          return delete _this.sortFields[k];
         }
-        return console.log([obj, obj.active, k, _this.sortFields[k]]);
       });
+      return console.log(this.sortFields);
     };
 
     FacMode.prototype.unitSortCallback = function(sortBy) {
@@ -131,7 +134,7 @@ app.controller('MainCtrl', function($scope, $resource, $filter) {
         }
       });
       stats = {};
-      angular.forEach($scope.dataSource.unitStats, function(t, k) {
+      angular.forEach(this.statDefs, function(t, k) {
         stats[k] = {
           'max': 0,
           'vals': []
