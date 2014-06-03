@@ -68,7 +68,7 @@ app.controller('MainCtrl', ($scope, $resource, $filter) ->
 		unitSeq: false
 		
 		# setup stat definitions & initial sort fields
-		constructor: () ->		
+		constructor: () ->	
 			@statDefs = $scope.dataSource.statDefs
 			@updateSortFields()
 		
@@ -85,7 +85,7 @@ app.controller('MainCtrl', ($scope, $resource, $filter) ->
 				return makes > -1
 	
 		# updating the sort fields
-		updateSortFields: () =>
+		updateSortFields: () ->
 			angular.forEach(@statDefs, (obj,k) =>
 				if obj.active
 					# @TODO: something wrong here
@@ -95,7 +95,7 @@ app.controller('MainCtrl', ($scope, $resource, $filter) ->
 				#console.log [obj, obj.active, k, @sortFields[k]]
 			)
 			#$scope.$digest()
-			console.log @sortFields
+			#console.log @sortFields
 			
 		# sorting the sort fields
 		unitSortCallback: (sortBy) ->
@@ -106,7 +106,6 @@ app.controller('MainCtrl', ($scope, $resource, $filter) ->
 			
 		# find all stats for the selected factory
 		getFilterStats: (builds) ->
-			#console.log "filter start"
 			units = []
 			angular.forEach($scope.dataSource.units.data, (u) ->
 				makes = builds.indexOf u.handle
@@ -122,7 +121,6 @@ app.controller('MainCtrl', ($scope, $resource, $filter) ->
 				# some maths
 				stats[k].max = Math.max.apply(Math, stats[k].vals)
 			)
-			#console.log stats
 			return stats
 			
 		# figure out a good width for the "strength indicator"
