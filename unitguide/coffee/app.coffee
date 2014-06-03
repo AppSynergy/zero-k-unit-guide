@@ -24,7 +24,9 @@ app.controller('MainCtrl', ($scope, $resource, $filter) ->
 	# str:  label for stat
 	# active: default on/off
 	# ----------------------------
-	$scope.unitStats = {
+	$scope.dataSource = {}
+	
+	$scope.dataSource.unitStats = {
 		health:      {str:'Health',active:true},
 		cost:        {str:'Cost',active:true},
 		damage:      {str:'Damage',active:false},
@@ -38,21 +40,19 @@ app.controller('MainCtrl', ($scope, $resource, $filter) ->
 	
 	# ----------------------------
 	# Fetch json data onload
-	# ----------------------------
-	
-	$scope.factories = $resource('../data/Factories.json').get () -> # fetch factories		
-		$scope.units = $resource('../data/Units.json').get () -> # then fetch units
+	# ----------------------------	
+	$scope.dataSource.factories = $resource('../data/Factories.json').get () -> # fetch factories		
+		$scope.dataSource.units = $resource('../data/Units.json').get () -> # then fetch units
 			# go to Factory mode
 			if typeof $scope.selectedMode != undefined
 				# default to... I dunno... Cloaky?
-				fac = $scope.factories.data[10]
-				$scope.facPage.getFilterStats fac.builds
+				fac = $scope.dataSource.factories.data[10]
 				$scope.facPage.selectedFactory = fac
+				$scope.facPage.selectFactory()
 	
 	# ----------------------------
 	# Factory page logic
-	# ----------------------------
-	
+	# ----------------------------	
 	class FacMode	
 		# which factory are we viewing
 		selectedFactory: {}
@@ -67,13 +67,13 @@ app.controller('MainCtrl', ($scope, $resource, $filter) ->
 		unitSeq: false
 		
 		# @TODO: something wrong here
-		#constructor: () ->
-		#	@updateSortFields()
+		constructor: () ->
+			@updateSortFields()
 		
 		# choosing a new factory
 		selectFactory: () ->
 			builds = @selectedFactory.builds
-			@getFilterStats builds
+			@stats = @getFilterStats builds
 
 		# used for filtering units list for a specific factory
 		unitFilterByFac: (units) ->
@@ -83,15 +83,14 @@ app.controller('MainCtrl', ($scope, $resource, $filter) ->
 				return makes > -1
 	
 		# updating the sort fields
-		updateSortFields: () ->
-			angular.forEach($scope.unitStats, (v,k) ->
-				if (v.active)
+		updateSortFields: () =>
+			angular.forEach($scope.dataSource.unitStats, (obj,k) =>
+				if obj.active
 					# @TODO: something wrong here
-					#@sortFields[k] = v.str
-					$scope.facPage.sortFields[k] = v.str
+					@sortFields[k] = obj.str
 				else
-					#delete @sortFields[k]
-					delete $scope.facPage.sortFields[k]
+					delete @sortFields[k]
+				console.log [obj, obj.active, k, @sortFields[k]]
 			)
 			
 		# sorting the sort fields
@@ -101,24 +100,26 @@ app.controller('MainCtrl', ($scope, $resource, $filter) ->
 				@unitSeq = !@unitSeq
 			@unitSort = sortBy
 			
-		# find the details of current units
+		# find all stats for the selected factory
 		getFilterStats: (builds) ->
+			#console.log "filter start"
 			units = []
-			angular.forEach($scope.units.data, (u) ->
+			angular.forEach($scope.dataSource.units.data, (u) ->
 				makes = builds.indexOf u.handle
 				if makes > -1 then units.push u
 			)
 			# loop through collecting stats
 			stats = {}
-			angular.forEach($scope.unitStats, (t,k) ->
+			angular.forEach($scope.dataSource.unitStats, (t,k) ->
 				stats[k] = {'max': 0, 'vals':[]}
 				angular.forEach(units, (u) ->
 					stats[k].vals.push u[k]
 				)		
 				# some maths
 				stats[k].max = Math.max.apply(Math, stats[k].vals)
-			)	
-			@stats = angular.copy stats
+			)
+			#console.log stats
+			return stats
 			
 		# figure out a good width for the "strength indicator"
 		myWidth: (stat,val) ->
@@ -130,9 +131,10 @@ app.controller('MainCtrl', ($scope, $resource, $filter) ->
 			perc = if calc > 99 then "100%" else Math.floor(calc)+"%"
 			return perc
 	
-	# instantiate the factory page, and set initial sort fields
+	# ----------------------------
+	# Instantiate the factory page
+	# ----------------------------
 	$scope.facPage = new FacMode
-	$scope.facPage.updateSortFields()
 	
 	console.log $scope # debug
 	true # because coffee
