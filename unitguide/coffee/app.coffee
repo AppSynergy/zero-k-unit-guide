@@ -64,7 +64,6 @@ app.controller('MainCtrl', ($scope, $resource, $filter) ->
 
 		# collect all stats for given selection of units
 		getFilterStats: (unitNames) ->
-			console.log unitNames
 			units = []
 			angular.forEach($scope.dataSource.units.data, (u) ->
 				makes = unitNames.indexOf u.handle
@@ -103,6 +102,10 @@ app.controller('MainCtrl', ($scope, $resource, $filter) ->
 		# Setup parent
 		constructor: () ->	
 			super("ComMode")
+			console.log @currentFields
+			angular.forEach(@statDefs, (obj,k) =>
+				@currentFields[k] = obj.str
+			)
 			
 		
 		# Add a unit to the comparison
@@ -110,6 +113,7 @@ app.controller('MainCtrl', ($scope, $resource, $filter) ->
 			@selectedUnits.push u
 			@selectedUnitHandles.push u.handle
 			console.log @selectedUnitHandles
+			console.log @currentFields
 			@stats = @getFilterStats @selectedUnitHandles
 
 	$scope.comPage = new ComMode

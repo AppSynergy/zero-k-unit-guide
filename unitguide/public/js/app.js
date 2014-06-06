@@ -82,7 +82,6 @@ app.controller('MainCtrl', function($scope, $resource, $filter) {
 
     ZkMode.prototype.getFilterStats = function(unitNames) {
       var stats, units;
-      console.log(unitNames);
       units = [];
       angular.forEach($scope.dataSource.units.data, function(u) {
         var makes;
@@ -130,13 +129,20 @@ app.controller('MainCtrl', function($scope, $resource, $filter) {
 
     function ComMode() {
       this.addUnit = __bind(this.addUnit, this);
+
+      var _this = this;
       ComMode.__super__.constructor.call(this, "ComMode");
+      console.log(this.currentFields);
+      angular.forEach(this.statDefs, function(obj, k) {
+        return _this.currentFields[k] = obj.str;
+      });
     }
 
     ComMode.prototype.addUnit = function(u) {
       this.selectedUnits.push(u);
       this.selectedUnitHandles.push(u.handle);
       console.log(this.selectedUnitHandles);
+      console.log(this.currentFields);
       return this.stats = this.getFilterStats(this.selectedUnitHandles);
     };
 

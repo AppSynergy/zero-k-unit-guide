@@ -1,11 +1,9 @@
 
-<p>TODO</p>
-
 <div class="zk-unit well" ng-repeat="u in comPage.selectedUnits">
 	<div class="row">
 		
 		<div class="col-xs-3">
-			<div ng-repeat="(key, title) in comPage.sortFields">	
+			<div ng-repeat="(key, title) in comPage.currentFields">	
 				<div class="progress">
 					<span class="title">{{ title }}</span>
 					<span class="badge">{{ u[key] }}</span>
