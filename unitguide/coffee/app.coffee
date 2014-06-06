@@ -11,7 +11,7 @@ app.controller('MainCtrl', ($scope, $resource, $filter) ->
 		$scope.selectedMode = v
 	
 	# Default page
-	$scope.selectedMode = "com";
+	$scope.selectedMode = "fac";
 	
 	# All the pages
 	$scope.modes = [
@@ -33,7 +33,7 @@ app.controller('MainCtrl', ($scope, $resource, $filter) ->
 		dps:         {str:'DPS',active:true},
 		dpspcost:    {str:'DPS / 1000 Metal',active:true},
 		healthpcost: {str:'Health / 1000 Metal',active:true},
-		range:       {str:'Range',active:false},
+		range:       {str:'Range',active:true},
 		speed:       {str:'Speed',active:false},
 		deathDmg:    {str:'Death Damage',active:false},
 	}
@@ -49,18 +49,38 @@ app.controller('MainCtrl', ($scope, $resource, $filter) ->
 				fac = $scope.dataSource.factories.data[10]
 				$scope.facPage.selectedFactory = fac
 				$scope.facPage.selectFactory()
+				
+	# ----------------------------
+	# Master mode for inheritance
+	# ----------------------------	
+	class ZkMode
+		# figure out a good width for the "strength indicator"
+		myWidth: (stat,val) ->
+			max = @stats[stat].max
+			min = @stats[stat].min
+			calc = 100*Math.log(val)/Math.log(max)
+			# completely arbitrary math..
+			calc = calc*2-120
+			perc = if calc > 99 then "100%" else Math.floor(calc)+"%"
+			return perc
 	
 	# ----------------------------
 	# Compare page logic
 	# ----------------------------	
 	class ComMode
-	
+		selectedUnits: []
+		
+		addUnit: (u) ->
+			console.log u
+			@selectedUnits.push u
+			console.log @selectedUnits
+
 	$scope.comPage = new ComMode
-	
+		
 	# ----------------------------
 	# Factory page logic
 	# ----------------------------	
-	class FacMode	
+	class FacMode extends ZkMode
 		# which factory are we viewing
 		selectedFactory: {}
 		# stats of all the units in that factory
@@ -126,16 +146,6 @@ app.controller('MainCtrl', ($scope, $resource, $filter) ->
 				stats[k].max = Math.max.apply(Math, stats[k].vals)
 			)
 			return stats
-			
-		# figure out a good width for the "strength indicator"
-		myWidth: (stat,val) ->
-			max = @stats[stat].max
-			min = @stats[stat].min
-			calc = 100*Math.log(val)/Math.log(max)
-			# completely arbitrary math..
-			calc = calc*2-120
-			perc = if calc > 99 then "100%" else Math.floor(calc)+"%"
-			return perc
 	
 	# ----------------------------
 	# Instantiate the factory page
