@@ -5,11 +5,11 @@ var app,
 app = angular.module('unitguide', ['ngResource']);
 
 app.controller('MainCtrl', function($scope, $resource, $filter) {
-  var FacMode;
+  var ComMode, FacMode;
   $scope.modeSelect = function(v) {
     return $scope.selectedMode = v;
   };
-  $scope.selectedMode = "fac";
+  $scope.selectedMode = "com";
   $scope.modes = [
     {
       str: 'Factory Mode',
@@ -68,6 +68,14 @@ app.controller('MainCtrl', function($scope, $resource, $filter) {
       }
     });
   });
+  ComMode = (function() {
+
+    function ComMode() {}
+
+    return ComMode;
+
+  })();
+  $scope.comPage = new ComMode;
   FacMode = (function() {
 
     FacMode.prototype.selectedFactory = {};
@@ -108,11 +116,10 @@ app.controller('MainCtrl', function($scope, $resource, $filter) {
       var _this = this;
       return angular.forEach(this.statDefs, function(obj, k) {
         if (obj.active) {
-          _this.sortFields[k] = obj.str;
+          return _this.sortFields[k] = obj.str;
         } else {
-          delete _this.sortFields[k];
+          return delete _this.sortFields[k];
         }
-        return console.log([obj, obj.active, k, _this.sortFields[k]]);
       });
     };
 

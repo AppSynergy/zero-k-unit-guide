@@ -1,9 +1,16 @@
 
+$dark: #2f2f2f
 $zkCyan: #4c90a6
 $zkCyan2: #38bfec
 $zkLight: #cbd3d4
 
 body
+	// Menu for selecting different views/pages
+	.navbar-nav>li>a:hover
+		color: $zkLight
+		background-color: $dark
+		
+	// General buttons
 	.btn-primary
 		background-color: $zkCyan
 		border-color: $zkLight
@@ -11,8 +18,20 @@ body
 	.btn-primary:hover, .btn-primary:focus
 		background-color: $zkCyan2
 		border-color: $zkLight
+	.btn .sort.isSortedUp:before
+		content: "\25BC"
+	.btn .sort.isSortedDown:before
+		content: "\25B2"
+	
+	// Pick a factory in factory mode
 	.pickFac
 		height: 40px
+		
+	// Checkboxes for stats on/off
+	.selectStat
+		margin: 2px 15px 0 0
+	
+	// Unit stats
 	.zk-unit
 		.badge
 			right: 3px
@@ -21,16 +40,10 @@ body
 		.title
 			padding-left: 3px
 			position: absolute
-	.progress
-		margin-bottom: 4px
-	.progress-bar
-		background-color: $zkCyan
-	.unitPic
-		float: left
-		padding: 0 10px 0 0
-	.btn .sort.isSortedUp:before
-		content: "\25BC"
-	.btn .sort.isSortedDown:before
-		content: "\25B2"
-	.selectStat
-		margin: 10px
+		.progress
+			margin-bottom: 4px
+		.progress-bar
+			background-color: $zkCyan
+		.unitPic
+			float: left
+			padding: 0 10px 0 0

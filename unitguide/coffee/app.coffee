@@ -11,7 +11,7 @@ app.controller('MainCtrl', ($scope, $resource, $filter) ->
 		$scope.selectedMode = v
 	
 	# Default page
-	$scope.selectedMode = "fac";
+	$scope.selectedMode = "com";
 	
 	# All the pages
 	$scope.modes = [
@@ -49,6 +49,13 @@ app.controller('MainCtrl', ($scope, $resource, $filter) ->
 				fac = $scope.dataSource.factories.data[10]
 				$scope.facPage.selectedFactory = fac
 				$scope.facPage.selectFactory()
+	
+	# ----------------------------
+	# Compare page logic
+	# ----------------------------	
+	class ComMode
+	
+	$scope.comPage = new ComMode
 	
 	# ----------------------------
 	# Factory page logic
@@ -92,10 +99,7 @@ app.controller('MainCtrl', ($scope, $resource, $filter) ->
 					@sortFields[k] = obj.str
 				else
 					delete @sortFields[k]
-				console.log [obj, obj.active, k, @sortFields[k]]
 			)
-			#$scope.$digest()
-			#console.log @sortFields
 			
 		# sorting the sort fields
 		unitSortCallback: (sortBy) ->

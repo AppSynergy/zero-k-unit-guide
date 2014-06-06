@@ -1,51 +1,56 @@
-/* line 7, ../../sass/src/unitguide.sass */
+/* line 9, ../../sass/src/unitguide.sass */
+body .navbar-nav > li > a:hover {
+  color: #cbd3d4;
+  background-color: #2f2f2f;
+}
+/* line 14, ../../sass/src/unitguide.sass */
 body .btn-primary {
   background-color: #4c90a6;
   border-color: #cbd3d4;
   margin: 6px;
 }
-/* line 11, ../../sass/src/unitguide.sass */
+/* line 18, ../../sass/src/unitguide.sass */
 body .btn-primary:hover, body .btn-primary:focus {
   background-color: #38bfec;
   border-color: #cbd3d4;
 }
-/* line 14, ../../sass/src/unitguide.sass */
+/* line 21, ../../sass/src/unitguide.sass */
+body .btn .sort.isSortedUp:before {
+  content: "\25BC";
+}
+/* line 23, ../../sass/src/unitguide.sass */
+body .btn .sort.isSortedDown:before {
+  content: "\25B2";
+}
+/* line 27, ../../sass/src/unitguide.sass */
 body .pickFac {
   height: 40px;
 }
-/* line 17, ../../sass/src/unitguide.sass */
+/* line 31, ../../sass/src/unitguide.sass */
+body .selectStat {
+  margin: 2px 15px 0 0;
+}
+/* line 36, ../../sass/src/unitguide.sass */
 body .zk-unit .badge {
   right: 3px;
   position: absolute;
   height: 20px;
 }
-/* line 21, ../../sass/src/unitguide.sass */
+/* line 40, ../../sass/src/unitguide.sass */
 body .zk-unit .title {
   padding-left: 3px;
   position: absolute;
 }
-/* line 24, ../../sass/src/unitguide.sass */
-body .progress {
+/* line 43, ../../sass/src/unitguide.sass */
+body .zk-unit .progress {
   margin-bottom: 4px;
 }
-/* line 26, ../../sass/src/unitguide.sass */
-body .progress-bar {
+/* line 45, ../../sass/src/unitguide.sass */
+body .zk-unit .progress-bar {
   background-color: #4c90a6;
 }
-/* line 28, ../../sass/src/unitguide.sass */
-body .unitPic {
+/* line 47, ../../sass/src/unitguide.sass */
+body .zk-unit .unitPic {
   float: left;
   padding: 0 10px 0 0;
-}
-/* line 31, ../../sass/src/unitguide.sass */
-body .btn .sort.isSortedUp:before {
-  content: "\25BC";
-}
-/* line 33, ../../sass/src/unitguide.sass */
-body .btn .sort.isSortedDown:before {
-  content: "\25B2";
-}
-/* line 35, ../../sass/src/unitguide.sass */
-body .selectStat {
-  margin: 10px;
 }
