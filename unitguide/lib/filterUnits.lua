@@ -66,17 +66,18 @@ function filterUnits()
 					-- take the largest damage class - probably the right one!
 					s['damage'] = math.ceil(dMult*table.max(gunDamages))
 					-- some weapons don't have range
-					if setContains(s, 'range') then
+					if setContains(v['weapondefs'][gunName], 'range') then
 						s['range'] = v['weapondefs'][gunName]['range']
 					else
 						s['range'] = 0
 					end
 					s['reload'] = v['weapondefs'][gunName]['reloadtime']
+					-- calculate dps
 					if setContains(s, 'damage') then
 						if setContains(s, 'reload') then
 							s['dps'] = math.floor(s['damage']/s['reload'])
 						else
-							-- stuff like roach has no reload
+							-- stuff like roach has no reload, just damage will do
 							s['dps'] = s['damage']
 						end
 					end
