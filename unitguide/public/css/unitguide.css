@@ -5,7 +5,7 @@ body .btn-primary {
   margin: 6px;
 }
 /* line 11, ../../sass/src/unitguide.sass */
-body .btn-primary:hover {
+body .btn-primary:hover, body .btn-primary:focus {
   background-color: #38bfec;
   border-color: #cbd3d4;
 }

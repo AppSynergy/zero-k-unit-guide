@@ -85,14 +85,14 @@ app.controller('MainCtrl', ($scope, $resource, $filter) ->
 				return makes > -1
 	
 		# updating the sort fields
-		updateSortFields: () ->
+		updateSortFields: () =>
 			angular.forEach(@statDefs, (obj,k) =>
 				if obj.active
 					# @TODO: something wrong here
 					@sortFields[k] = obj.str
 				else
 					delete @sortFields[k]
-				#console.log [obj, obj.active, k, @sortFields[k]]
+				console.log [obj, obj.active, k, @sortFields[k]]
 			)
 			#$scope.$digest()
 			#console.log @sortFields
