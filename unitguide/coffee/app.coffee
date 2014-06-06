@@ -11,12 +11,12 @@ app.controller('MainCtrl', ($scope, $resource, $filter) ->
 		$scope.selectedMode = v
 	
 	# Default page
-	$scope.selectedMode = "fac";
+	$scope.selectedMode = "com";
 	
 	# All the pages
 	$scope.modes = [
-		{str:'Factory Mode',key:'fac'},
-		{str:'Compare Mode',key:'com'}
+		{str:'Browse units by factory',key:'fac'},
+		{str:'Compare individual units',key:'com'}
 	]
 		
 	# ----------------------------
@@ -54,85 +54,20 @@ app.controller('MainCtrl', ($scope, $resource, $filter) ->
 	# Master mode for inheritance
 	# ----------------------------	
 	class ZkMode
-		# figure out a good width for the "strength indicator"
-		myWidth: (stat,val) ->
-			max = @stats[stat].max
-			min = @stats[stat].min
-			calc = 100*Math.log(val)/Math.log(max)
-			# completely arbitrary math..
-			calc = calc*2-120
-			perc = if calc > 99 then "100%" else Math.floor(calc)+"%"
-			return perc
-	
-	# ----------------------------
-	# Compare page logic
-	# ----------------------------	
-	class ComMode
-		selectedUnits: []
-		
-		addUnit: (u) ->
-			console.log u
-			@selectedUnits.push u
-			console.log @selectedUnits
-
-	$scope.comPage = new ComMode
-		
-	# ----------------------------
-	# Factory page logic
-	# ----------------------------	
-	class FacMode extends ZkMode
-		# which factory are we viewing
-		selectedFactory: {}
 		# stats of all the units in that factory
 		stats: {}
 		statDefs: {}
-		# visible (sortable) stats
-		sortFields: {}
-		# default sorting - alphabetical
-		unitSort: 'name'
-		facSort: 'name'
-		# asc vs desc
-		unitSeq: false
 		
 		# setup stat definitions & initial sort fields
 		constructor: () ->	
 			@statDefs = $scope.dataSource.statDefs
-			@updateSortFields()
-		
-		# choosing a new factory
-		selectFactory: () ->
-			builds = @selectedFactory.builds
-			@stats = @getFilterStats builds
 
-		# used for filtering units list for a specific factory
-		unitFilterByFac: (units) ->
-			return (u) ->
-				# return true if in the build list
-				makes = units.indexOf u.handle
-				return makes > -1
-	
-		# updating the sort fields
-		updateSortFields: () =>
-			angular.forEach(@statDefs, (obj,k) =>
-				if obj.active
-					# @TODO: something wrong here
-					@sortFields[k] = obj.str
-				else
-					delete @sortFields[k]
-			)
-			
-		# sorting the sort fields
-		unitSortCallback: (sortBy) ->
-			# swap order if no other changes
-			if (@unitSort == sortBy)
-				@unitSeq = !@unitSeq
-			@unitSort = sortBy
-			
-		# find all stats for the selected factory
-		getFilterStats: (builds) ->
+		# collect all stats for given selection of units
+		getFilterStats: (unitNames) ->
+			console.log unitNames
 			units = []
 			angular.forEach($scope.dataSource.units.data, (u) ->
-				makes = builds.indexOf u.handle
+				makes = unitNames.indexOf u.handle
 				if makes > -1 then units.push u
 			)
 			# loop through collecting stats
@@ -146,6 +81,85 @@ app.controller('MainCtrl', ($scope, $resource, $filter) ->
 				stats[k].max = Math.max.apply(Math, stats[k].vals)
 			)
 			return stats
+	
+		# figure out a good width for the "strength indicator"
+		myWidth: (stat,val) ->
+			max = @stats[stat].max
+			min = @stats[stat].min
+			calc = 100*Math.log(val)/Math.log(max)
+			# completely arbitrary math..
+			calc = calc*2-120
+			perc = if calc > 99 then "100%" else Math.floor(calc)+"%"
+			return perc
+	
+	# ----------------------------
+	# Compare page logic
+	# ----------------------------	
+	class ComMode extends ZkMode
+		selectedUnitHandles: []
+		selectedUnits: []
+		currentFields: {}
+		
+		# Setup parent
+		constructor: () ->	
+			super("ComMode")
+			
+		
+		# Add a unit to the comparison
+		addUnit: (u) =>
+			@selectedUnits.push u
+			@selectedUnitHandles.push u.handle
+			console.log @selectedUnitHandles
+			@stats = @getFilterStats @selectedUnitHandles
+
+	$scope.comPage = new ComMode
+		
+	# ----------------------------
+	# Factory page logic
+	# ----------------------------	
+	class FacMode extends ZkMode
+		# which factory are we viewing
+		selectedFactory: {}
+		# visible (sortable) stats
+		currentFields: {}
+		# default sorting - alphabetical
+		unitSort: 'name'
+		facSort: 'name'
+		# asc vs desc
+		unitSeq: false
+		
+		# setup stat definitions & initial sort fields
+		constructor: () ->	
+			super("FacMode")
+			@updateCurrentFields()
+		
+		# choosing a new factory
+		selectFactory: () ->
+			builds = @selectedFactory.builds
+			@stats = @getFilterStats builds
+
+		# used for filtering units list for a specific factory
+		unitFilterByFac: (units) ->
+			return (u) ->
+				# return true if in the build list
+				makes = units.indexOf u.handle
+				return makes > -1
+	
+		# updating the visible fields
+		updateCurrentFields: () =>
+			angular.forEach(@statDefs, (obj,k) =>
+				if obj.active
+					@currentFields[k] = obj.str
+				else
+					delete @currentFields[k]
+			)
+			
+		# sorting the sort fields
+		unitSortCallback: (sortBy) ->
+			# swap order if no other changes
+			if (@unitSort == sortBy)
+				@unitSeq = !@unitSeq
+			@unitSort = sortBy
 	
 	# ----------------------------
 	# Instantiate the factory page

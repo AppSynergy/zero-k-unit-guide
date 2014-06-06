@@ -11,13 +11,13 @@ app.controller('MainCtrl', function($scope, $resource, $filter) {
   $scope.modeSelect = function(v) {
     return $scope.selectedMode = v;
   };
-  $scope.selectedMode = "fac";
+  $scope.selectedMode = "com";
   $scope.modes = [
     {
-      str: 'Factory Mode',
+      str: 'Browse units by factory',
       key: 'fac'
     }, {
-      str: 'Compare Mode',
+      str: 'Compare individual units',
       key: 'com'
     }
   ];
@@ -72,99 +72,21 @@ app.controller('MainCtrl', function($scope, $resource, $filter) {
   });
   ZkMode = (function() {
 
-    function ZkMode() {}
+    ZkMode.prototype.stats = {};
 
-    ZkMode.prototype.myWidth = function(stat, val) {
-      var calc, max, min, perc;
-      max = this.stats[stat].max;
-      min = this.stats[stat].min;
-      calc = 100 * Math.log(val) / Math.log(max);
-      calc = calc * 2 - 120;
-      perc = calc > 99 ? "100%" : Math.floor(calc) + "%";
-      return perc;
-    };
+    ZkMode.prototype.statDefs = {};
 
-    return ZkMode;
-
-  })();
-  ComMode = (function() {
-
-    function ComMode() {}
-
-    ComMode.prototype.selectedUnits = [];
-
-    ComMode.prototype.addUnit = function(u) {
-      console.log(u);
-      this.selectedUnits.push(u);
-      return console.log(this.selectedUnits);
-    };
-
-    return ComMode;
-
-  })();
-  $scope.comPage = new ComMode;
-  FacMode = (function(_super) {
-
-    __extends(FacMode, _super);
-
-    FacMode.prototype.selectedFactory = {};
-
-    FacMode.prototype.stats = {};
-
-    FacMode.prototype.statDefs = {};
-
-    FacMode.prototype.sortFields = {};
-
-    FacMode.prototype.unitSort = 'name';
-
-    FacMode.prototype.facSort = 'name';
-
-    FacMode.prototype.unitSeq = false;
-
-    function FacMode() {
-      this.updateSortFields = __bind(this.updateSortFields, this);
+    function ZkMode() {
       this.statDefs = $scope.dataSource.statDefs;
-      this.updateSortFields();
     }
 
-    FacMode.prototype.selectFactory = function() {
-      var builds;
-      builds = this.selectedFactory.builds;
-      return this.stats = this.getFilterStats(builds);
-    };
-
-    FacMode.prototype.unitFilterByFac = function(units) {
-      return function(u) {
-        var makes;
-        makes = units.indexOf(u.handle);
-        return makes > -1;
-      };
-    };
-
-    FacMode.prototype.updateSortFields = function() {
-      var _this = this;
-      return angular.forEach(this.statDefs, function(obj, k) {
-        if (obj.active) {
-          return _this.sortFields[k] = obj.str;
-        } else {
-          return delete _this.sortFields[k];
-        }
-      });
-    };
-
-    FacMode.prototype.unitSortCallback = function(sortBy) {
-      if (this.unitSort === sortBy) {
-        this.unitSeq = !this.unitSeq;
-      }
-      return this.unitSort = sortBy;
-    };
-
-    FacMode.prototype.getFilterStats = function(builds) {
+    ZkMode.prototype.getFilterStats = function(unitNames) {
       var stats, units;
+      console.log(unitNames);
       units = [];
       angular.forEach($scope.dataSource.units.data, function(u) {
         var makes;
-        makes = builds.indexOf(u.handle);
+        makes = unitNames.indexOf(u.handle);
         if (makes > -1) {
           return units.push(u);
         }
@@ -181,6 +103,97 @@ app.controller('MainCtrl', function($scope, $resource, $filter) {
         return stats[k].max = Math.max.apply(Math, stats[k].vals);
       });
       return stats;
+    };
+
+    ZkMode.prototype.myWidth = function(stat, val) {
+      var calc, max, min, perc;
+      max = this.stats[stat].max;
+      min = this.stats[stat].min;
+      calc = 100 * Math.log(val) / Math.log(max);
+      calc = calc * 2 - 120;
+      perc = calc > 99 ? "100%" : Math.floor(calc) + "%";
+      return perc;
+    };
+
+    return ZkMode;
+
+  })();
+  ComMode = (function(_super) {
+
+    __extends(ComMode, _super);
+
+    ComMode.prototype.selectedUnitHandles = [];
+
+    ComMode.prototype.selectedUnits = [];
+
+    ComMode.prototype.currentFields = {};
+
+    function ComMode() {
+      this.addUnit = __bind(this.addUnit, this);
+      ComMode.__super__.constructor.call(this, "ComMode");
+    }
+
+    ComMode.prototype.addUnit = function(u) {
+      this.selectedUnits.push(u);
+      this.selectedUnitHandles.push(u.handle);
+      console.log(this.selectedUnitHandles);
+      return this.stats = this.getFilterStats(this.selectedUnitHandles);
+    };
+
+    return ComMode;
+
+  })(ZkMode);
+  $scope.comPage = new ComMode;
+  FacMode = (function(_super) {
+
+    __extends(FacMode, _super);
+
+    FacMode.prototype.selectedFactory = {};
+
+    FacMode.prototype.currentFields = {};
+
+    FacMode.prototype.unitSort = 'name';
+
+    FacMode.prototype.facSort = 'name';
+
+    FacMode.prototype.unitSeq = false;
+
+    function FacMode() {
+      this.updateCurrentFields = __bind(this.updateCurrentFields, this);
+      FacMode.__super__.constructor.call(this, "FacMode");
+      this.updateCurrentFields();
+    }
+
+    FacMode.prototype.selectFactory = function() {
+      var builds;
+      builds = this.selectedFactory.builds;
+      return this.stats = this.getFilterStats(builds);
+    };
+
+    FacMode.prototype.unitFilterByFac = function(units) {
+      return function(u) {
+        var makes;
+        makes = units.indexOf(u.handle);
+        return makes > -1;
+      };
+    };
+
+    FacMode.prototype.updateCurrentFields = function() {
+      var _this = this;
+      return angular.forEach(this.statDefs, function(obj, k) {
+        if (obj.active) {
+          return _this.currentFields[k] = obj.str;
+        } else {
+          return delete _this.currentFields[k];
+        }
+      });
+    };
+
+    FacMode.prototype.unitSortCallback = function(sortBy) {
+      if (this.unitSort === sortBy) {
+        this.unitSeq = !this.unitSeq;
+      }
+      return this.unitSort = sortBy;
     };
 
     return FacMode;
