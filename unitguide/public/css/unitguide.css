@@ -71,3 +71,7 @@ body .zk-unit .removeUnit:hover {
 body .zk-unit .comHeader {
   min-height: 80px;
 }
+/* line 61, ../../sass/src/unitguide.sass */
+body .zk-unit .comHeader p {
+  padding-right: 10px;
+}
