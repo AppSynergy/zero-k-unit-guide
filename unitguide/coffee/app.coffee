@@ -41,6 +41,7 @@ app.controller('MainCtrl', ($scope, $resource, $filter) ->
 	# ----------------------------
 	# Data Sources and load procedure
 	# ----------------------------
+	$scope.stillLoading = true
 	
 	# be able to find a unit from its handle
 	loadUnitsByHandle = () ->
@@ -60,6 +61,8 @@ app.controller('MainCtrl', ($scope, $resource, $filter) ->
 				fac = $scope.dataSource.factories.data[10]
 				$scope.facPage.selectedFactory = fac
 				$scope.facPage.selectFactory()
+				# Done!
+				$scope.stillLoading = false
 
 	# ----------------------------
 	# Master mode for inheritance

@@ -60,6 +60,7 @@ app.controller('MainCtrl', function($scope, $resource, $filter) {
       active: false
     }
   };
+  $scope.stillLoading = true;
   loadUnitsByHandle = function() {
     $scope.dataSource.unitByHandle = {};
     return angular.forEach($scope.dataSource.units.data, function(u) {
@@ -73,7 +74,8 @@ app.controller('MainCtrl', function($scope, $resource, $filter) {
       if (typeof $scope.selectedMode !== void 0) {
         fac = $scope.dataSource.factories.data[10];
         $scope.facPage.selectedFactory = fac;
-        return $scope.facPage.selectFactory();
+        $scope.facPage.selectFactory();
+        return $scope.stillLoading = false;
       }
     });
   });
