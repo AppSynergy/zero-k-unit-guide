@@ -54,3 +54,20 @@ body .zk-unit .unitPic {
   float: left;
   padding: 0 10px 0 0;
 }
+/* line 50, ../../sass/src/unitguide.sass */
+body .zk-unit .removeUnit {
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  background-color: #4c90a6;
+  color: black;
+  border: none;
+}
+/* line 57, ../../sass/src/unitguide.sass */
+body .zk-unit .removeUnit:hover {
+  background-color: #38bfec;
+}
+/* line 59, ../../sass/src/unitguide.sass */
+body .zk-unit .comHeader {
+  min-height: 80px;
+}

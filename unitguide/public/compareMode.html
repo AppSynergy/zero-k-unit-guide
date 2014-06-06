@@ -1,35 +1,36 @@
-
-<div class="zk-unit well" ng-repeat="u in comPage.selectedUnits">
-	<div class="row">
+<div class="row">
+	<div class="col col-xs-6 col-md-4 col-lg-3 zk-unit well"
+		ng-repeat="u in comPage.selectedUnits">
 		
-		<div class="col-xs-3">
-			<div ng-repeat="(key, title) in comPage.currentFields">	
-				<div class="progress">
-					<span class="title">{{ title }}</span>
-					<span class="badge">{{ u[key] }}</span>
-					<div class="progress-bar" role="progressbar"
-						ng-style="{width: comPage.myWidth(key,u[key])}">
-					</div>
+		<div class="comHeader">
+			<p>
+				<img class="unitPic" src="img/units/{{ u.pic }}" />
+				<strong>{{ u.name }}</strong> - <em>{{ u.desc }}</em>
+			</p>
+			<button class="removeUnit" ng-click="comPage.removeUnit(u);">X</button>
+		</div>
+		
+		<div ng-repeat="(key, title) in comPage.currentFields">	
+			<div class="progress">
+				<span class="title">{{ title }}</span>
+				<span class="badge">{{ u[key] }}</span>
+				<div class="progress-bar" role="progressbar"
+					ng-style="{width: comPage.myWidth(key,u[key])}">
 				</div>
 			</div>
 		</div>
-		
-		<div class="col-xs-9">
-			<h4><strong>{{ u.name }}</strong> - <em>{{ u.desc }}</em></h4>
-			<p><img class="unitPic" src="img/units/{{ u.pic }}" />
-			{{ u.longdesc }}</p>
-		</div>
-		
+	
 	</div>
 </div>
 
-
-<div ng-repeat="u in dataSource.units.data">
-	{{ u.name }}
-	<button ng-click="comPage.addUnit(u)">Add</button>
-</div>
+<p>Click on a unit name to add it to the comparison.</p>
 
 <div ng-repeat="fac in dataSource.factories.data">
-	{{ fac.name }}
+	<strong>{{ fac.name }}:</strong>
+	<span ng-repeat="handle in fac.builds">
+		<a href="#" ng-click="comPage.addUnit(handle)">
+			{{ dataSource.unitByHandle[handle].name }}
+		</a>
+	</span>
 </div>
 

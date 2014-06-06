@@ -7,7 +7,7 @@ var app,
 app = angular.module('unitguide', ['ngResource']);
 
 app.controller('MainCtrl', function($scope, $resource, $filter) {
-  var ComMode, FacMode, ZkMode;
+  var ComMode, FacMode, ZkMode, loadUnitsByHandle;
   $scope.modeSelect = function(v) {
     return $scope.selectedMode = v;
   };
@@ -60,9 +60,16 @@ app.controller('MainCtrl', function($scope, $resource, $filter) {
       active: false
     }
   };
+  loadUnitsByHandle = function() {
+    $scope.dataSource.unitByHandle = {};
+    return angular.forEach($scope.dataSource.units.data, function(u) {
+      return $scope.dataSource.unitByHandle[u.handle] = u;
+    });
+  };
   $scope.dataSource.factories = $resource('../data/Factories.json').get(function() {
     return $scope.dataSource.units = $resource('../data/Units.json').get(function() {
       var fac;
+      loadUnitsByHandle();
       if (typeof $scope.selectedMode !== void 0) {
         fac = $scope.dataSource.factories.data[10];
         $scope.facPage.selectedFactory = fac;
@@ -128,21 +135,37 @@ app.controller('MainCtrl', function($scope, $resource, $filter) {
     ComMode.prototype.currentFields = {};
 
     function ComMode() {
+      this.removeUnit = __bind(this.removeUnit, this);
+
       this.addUnit = __bind(this.addUnit, this);
 
       var _this = this;
       ComMode.__super__.constructor.call(this, "ComMode");
-      console.log(this.currentFields);
       angular.forEach(this.statDefs, function(obj, k) {
         return _this.currentFields[k] = obj.str;
       });
     }
 
-    ComMode.prototype.addUnit = function(u) {
-      this.selectedUnits.push(u);
-      this.selectedUnitHandles.push(u.handle);
-      console.log(this.selectedUnitHandles);
-      console.log(this.currentFields);
+    ComMode.prototype.addUnit = function(handle) {
+      var unit;
+      if (this.selectedUnitHandles.indexOf(handle) < 0) {
+        unit = $scope.dataSource.unitByHandle[handle];
+        this.selectedUnits.push(unit);
+        this.selectedUnitHandles.push(handle);
+        return this.stats = this.getFilterStats(this.selectedUnitHandles);
+      }
+    };
+
+    ComMode.prototype.removeUnit = function(u) {
+      var suhi, sui;
+      sui = this.selectedUnits.indexOf(u);
+      if (sui > -1) {
+        this.selectedUnits.splice(sui, 1);
+      }
+      suhi = this.selectedUnitHandles.indexOf(u.handle);
+      if (suhi > -1) {
+        this.selectedUnitHandles.splice(suhi, 1);
+      }
       return this.stats = this.getFilterStats(this.selectedUnitHandles);
     };
 

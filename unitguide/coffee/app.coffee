@@ -39,17 +39,28 @@ app.controller('MainCtrl', ($scope, $resource, $filter) ->
 	}
 	
 	# ----------------------------
-	# Fetch json data onload
-	# ----------------------------	
-	$scope.dataSource.factories = $resource('../data/Factories.json').get () -> # fetch factories		
-		$scope.dataSource.units = $resource('../data/Units.json').get () -> # then fetch units
+	# Data Sources and load procedure
+	# ----------------------------
+	
+	# be able to find a unit from its handle
+	loadUnitsByHandle = () ->
+		$scope.dataSource.unitByHandle = {}
+		angular.forEach($scope.dataSource.units.data, (u) ->
+			$scope.dataSource.unitByHandle[u.handle] = u
+		)
+	
+	# load the json files as resources
+	$scope.dataSource.factories = $resource('../data/Factories.json').get () ->
+		# fetch factories, then fetch units
+		$scope.dataSource.units = $resource('../data/Units.json').get () -> 	
+			loadUnitsByHandle()
 			# go to Factory mode
 			if typeof $scope.selectedMode != undefined
 				# default to... I dunno... Cloaky?
 				fac = $scope.dataSource.factories.data[10]
 				$scope.facPage.selectedFactory = fac
 				$scope.facPage.selectFactory()
-				
+
 	# ----------------------------
 	# Master mode for inheritance
 	# ----------------------------	
@@ -102,19 +113,32 @@ app.controller('MainCtrl', ($scope, $resource, $filter) ->
 		# Setup parent
 		constructor: () ->	
 			super("ComMode")
-			console.log @currentFields
+			# Use all available statistics
 			angular.forEach(@statDefs, (obj,k) =>
 				@currentFields[k] = obj.str
 			)
 			
-		
 		# Add a unit to the comparison
-		addUnit: (u) =>
-			@selectedUnits.push u
-			@selectedUnitHandles.push u.handle
-			console.log @selectedUnitHandles
-			console.log @currentFields
+		addUnit: (handle) =>
+			# Only if it's not already added
+			if @selectedUnitHandles.indexOf(handle) < 0
+				unit = $scope.dataSource.unitByHandle[handle]
+				@selectedUnits.push unit
+				@selectedUnitHandles.push handle
+				# Update stats
+				@stats = @getFilterStats @selectedUnitHandles
+			
+		# Remove a unit from the comparison
+		removeUnit: (u) =>
+			# Remove from units array
+			sui = @selectedUnits.indexOf u
+			if sui > -1 then @selectedUnits.splice sui, 1
+			# Remove from handles array
+			suhi = @selectedUnitHandles.indexOf u.handle
+			if suhi > -1 then @selectedUnitHandles.splice suhi, 1
+			# Update stats
 			@stats = @getFilterStats @selectedUnitHandles
+			
 
 	$scope.comPage = new ComMode
 		
