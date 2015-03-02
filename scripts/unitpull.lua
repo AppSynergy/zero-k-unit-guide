@@ -5,9 +5,9 @@
 -- ##################
 
 require 'lfs' -- file system
-unitpath = "../zk/units/"
-jsonpath = "./public/data/"
-libpath = "./lib/" -- other lua
+unitpath = "../../zk/units/"
+jsonpath = "../public/data/"
+libpath = "../lualib/" -- other lua
 
 require(libpath..'/tableTools')
 
