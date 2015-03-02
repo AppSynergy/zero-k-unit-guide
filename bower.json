@@ -1,0 +1,20 @@
+{
+  "name": "zero-k-unit-guide",
+  "version": "0.0.0",
+  "homepage": "https://github.com/AppSynergy/zero-k-unit-guide",
+  "authors": [
+    "Adam Marshall <adam@appsynergy.net>"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "bootstrap": "~3.3.2",
+    "darkstrap": "git@github.com:danneu/darkstrap.git"
+  }
+}

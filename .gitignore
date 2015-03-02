@@ -4,15 +4,6 @@
 .komodotools
 *.komodoproject
 *~
-unitguide/node_modules
-unitguide/sass/.sass-cache
-
-# Unit pics
-#unitguide/public/img/units/*
-
-# Actual ZK projects
-zk/
-Zero-K.info/
-unitguideOriginal
-upspring
-springweblobby-read-only
+node_modules/
+bower_components/
+sass/.sass-cache/
